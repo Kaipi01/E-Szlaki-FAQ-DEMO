@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   themeTogglerBtn.addEventListener("change", toggleTheme);
 
   new FAQAccordionModule(".cd-accordion--animated");
+
+  // linki są dynamicznie generowane na podstawie atrybutu "data-screen"
+  new ContentScreens("#more-information-module");
 });
 
 // pomoc
@@ -12,6 +15,127 @@ function toggleTheme() {
     document.body.classList.remove("dark");
   } else {
     document.body.classList.add("dark");
+  }
+}
+
+class ContentScreens {
+  constructor(mainContainerSelector) {
+    this.mainContainer = document.querySelector(mainContainerSelector);
+    this.menuList = this.mainContainer.querySelector(".main-menu-list");
+    this.screens = this.mainContainer.querySelectorAll(".screen-page");
+    this.pageLinks = [];
+    this.linkPage = "";
+    this.init();
+  }
+
+  init() {
+    this.generateNavigation();
+    this.pageLinks = this.mainContainer.querySelectorAll(".link-page");
+    this.bindPageLinks();
+    this.showPage(this.pageLinks[0]);
+  }
+
+  generateNavigation() {
+    this.screens.forEach((screen) => {
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+      const screenData = this.getScreenData(screen);
+
+      link.href = `#${screenData.slug}`;
+      link.className = "link-page";
+      link.textContent = screenData.name;
+      li.appendChild(link);
+
+      this.menuList.appendChild(li);
+    });
+  }
+
+  bindPageLinks() {
+    this.pageLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.showPage(link);
+      });
+    });
+  }
+
+  showPage(link) {
+    const activeMenu = this.mainContainer.querySelector(".link-page.active");
+    const prevActivePage = this.mainContainer.querySelector(
+      ".screen-page-active"
+    );
+
+    activeMenu?.classList.remove("active");
+
+    link.classList.add("active");
+    this.linkPage = link.getAttribute("href").split("#")[1];
+
+    this.screens.forEach((screen) => {
+      const screenData = this.getScreenData(screen);
+
+      if (screenData.slug === this.linkPage) {
+        // prevActivePage?.classList.remove("screen-page-active");
+        // screen.classList.add("screen-page-active");
+        this.animateChangePages(prevActivePage, screen);
+      }
+    });
+  }
+
+  animateChangePages(prevPage, nextPage) { 
+
+    if (prevPage) {
+      prevPage?.classList.remove("screen-page-active");
+      prevPage.style.position = "absolute";
+    }
+    nextPage.classList.add("screen-page-active");
+
+    setTimeout(() => {
+      nextPage.style.position = "relative"; 
+    }, 601);
+
+    // nextPage.style.position = "absolute";
+    // nextPage.style.left = "-60%"
+
+    // if (prevPage) {
+    //   prevPage.style.position = "absolute";
+    // }
+ 
+    // setTimeout(() => {
+    //   nextPage.style.display = "block";
+    //   prevPage?.classList.remove("screen-page-active");
+    //   nextPage.classList.add("screen-page-active");
+    //   nextPage.style.left = "0"
+    // }, 0);
+    // setTimeout(() => {
+    //   if (prevPage) {
+    //     prevPage.style.display = "none";
+    //   }
+    //   nextPage.style.position = "relative"; 
+    // }, 600); 
+
+    // setTimeout(() => {
+    //   nextPage.style.display = "block";
+    // }, 0);
+    // setTimeout(() => {
+    //   prevPage?.classList.remove("screen-page-active");
+    //   nextPage.classList.add("screen-page-active");
+    //   nextPage.style.left = "0"
+    // }, 0);
+    // setTimeout(() => {
+    //   if (prevPage) {
+    //     prevPage.style.display = "none";
+    //   }
+      
+    //   // nextPage.style.position = "relative";
+    // }, 600);
+    // setTimeout(() => {
+    //   nextPage.style.position = "relative";
+    //   // nextPage.style.position = "static";
+    // }, 601);
+  }
+
+  getScreenData(screen) {
+    return JSON.parse(screen.dataset.screen);
   }
 }
 
@@ -62,7 +186,7 @@ class FAQAccordionModule {
     this.init();
   }
 
-  init() { 
+  init() {
     const accordionsMenu = document.getElementsByClassName(
       "faq-accordion--animated"
     );
@@ -98,7 +222,7 @@ class FAQAccordionModule {
       return !!el.className.match(
         new RegExp("(\\s|^)" + className + "(\\s|$)")
       );
-  };
+  }
 
   addClass(el, className) {
     const classList = className.split(" ");
@@ -106,7 +230,7 @@ class FAQAccordionModule {
     else if (!this.hasClass(el, classList[0]))
       el.className += " " + classList[0];
     if (classList.length > 1) this.addClass(el, classList.slice(1).join(" "));
-  };
+  }
 
   removeClass(el, className) {
     const classList = className.split(" ");
@@ -117,18 +241,18 @@ class FAQAccordionModule {
     }
     if (classList.length > 1)
       this.removeClass(el, classList.slice(1).join(" "));
-  };
+  }
 
   toggleClass(el, className, bool) {
     if (bool) this.addClass(el, className);
     else this.removeClass(el, className);
-  };
+  }
 
   setAttributes(el, attrs) {
     for (const key in attrs) {
       el.setAttribute(key, attrs[key]);
     }
-  };
+  }
 
   getChildrenByClassName(el, className) {
     const children = el.children,
@@ -138,7 +262,7 @@ class FAQAccordionModule {
         childrenByClass.push(el.children[i]);
     }
     return childrenByClass;
-  };
+  }
 
   setHeight(start, to, element, duration, cb) {
     let change = to - start,
@@ -159,7 +283,7 @@ class FAQAccordionModule {
     // set the height of the element before starting animation -> fix bug on Safari
     element.setAttribute("style", "height:" + start + "px;");
     window.requestAnimationFrame(animateHeight);
-  };
+  }
 
   scrollTo(final, duration, cb) {
     const start = window.scrollY || document.documentElement.scrollTop,
@@ -179,7 +303,7 @@ class FAQAccordionModule {
     };
 
     window.requestAnimationFrame(animateScroll);
-  };
+  }
 
   //Move focus to an element
   moveFocus(element) {
@@ -189,11 +313,11 @@ class FAQAccordionModule {
       element.setAttribute("tabindex", "-1");
       element.focus();
     }
-  };
+  }
 
   getIndexInArray(array, el) {
     return Array.prototype.indexOf.call(array, el);
-  };
+  }
 
   cssSupports(property, value) {
     if ("CSS" in window) {
@@ -204,12 +328,12 @@ class FAQAccordionModule {
       });
       return jsProperty in document.body.style;
     }
-  };
+  }
 
   easeInOutQuad(t, b, c, d) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
     t--;
     return (-c / 2) * (t * (t - 2) - 1) + b;
-  };
+  }
 }

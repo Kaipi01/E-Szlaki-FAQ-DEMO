@@ -1,0 +1,145 @@
+@use "../components/modern-card" as *;
+@use "../components/links" as *;
+@use "../functions/toRem" as fun;
+
+#more-information-module { 
+
+  --page-shift-value: -60%;
+
+  .main-content {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+  .main-menu {
+    display: flex;
+    width: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .main-menu-list {
+    --navgation-link-border-radius: 10px;
+    display: none;
+
+    @media (min-width: 62em) {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      list-style: none;
+    }
+  }
+  .main-menu-list li {
+    flex-basis: 1;
+    flex-grow: 1; 
+  }
+  .main-menu-list .link-page {
+    @extend .link;
+    @extend .variant2;
+    @extend .small;
+    width: 100%;
+    border-radius: 0;
+
+    @media (min-width: 87.5em) { 
+      font-size: 1rem;
+    } 
+
+    &:active,
+    &:visited {
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: var(--green);
+    }
+  }
+
+  .card-body { 
+    width: 100%;
+    margin: 0 auto; 
+    // overflow-y: auto;
+    transition: all 0.6s ease-in-out;
+
+    top: 0;
+      position: absolute; 
+      //position: relative; 
+      left: var(--page-shift-value); // 0
+      //width: 50%; 
+      // height: 42rem; 
+  } 
+
+  .card-body-pgactive {
+    left: var(--page-shift-value); //0
+  }
+  .screen-main {
+    @media (min-width: 62em) {
+      z-index: 81;
+      // overflow-y: auto;
+    }
+
+    .logo {
+      display: block;
+      width: 100%;
+      max-width: 17rem;
+      margin: 0 auto;
+      margin-top: 1rem;
+    }
+
+    .text {
+      color: var(--font-color);
+      text-align: center;
+
+      @media (min-width: 87.5em) {
+        font-size: 1rem;
+      }
+    }
+  }
+  @media (min-width: 62em) {
+    .screen-page-single {
+      --translateY-value: -12.5rem;
+      visibility: hidden;
+      left: 0; // -50% 
+      transform: translateY(var(--translateY-value));
+    }
+  }
+  @media (min-width: 62em) {
+    .screen-page {
+      z-index: 11;
+      opacity: 0;
+    }
+  } 
+
+  .screen-page {
+    //display: none;
+    // max-height: fun.toRem(500);
+    // overflow-y: auto;
+
+    left: var(--page-shift-value);
+  }
+
+  .screen-page-active { 
+    visibility: visible;
+    z-index: 22;
+    left: 0; // -50%
+    transform: translateY(0px);
+    opacity: 1;
+    //display: block;
+  }
+
+  .link-icon-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; 
+    gap: 1rem;
+  }
+
+  .symbol-card {
+    @media (min-width: 32em) {
+      max-width: 12rem;
+    }
+  }
+}

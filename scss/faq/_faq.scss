@@ -1,4 +1,4 @@
-@use "../functions/toRem";
+@use "../functions/toRem" as fun;
 @use "./accordions";
 
 #FAQ-modul-e-szlaki {
@@ -40,12 +40,15 @@
     }
 
     .faq-main-categories-panel {
-      height: 500px;
+      min-height: fun.toRem(500);
+
+      .faq-categories-nav {
+
+      }
     }
 
     .faq-current-questions-panel {
-      width: 100%;
-      min-height: 31.25rem;
+      width: 100%; 
 
       @media (min-width: $content-breakpoint) {
          grid-column: span 3;

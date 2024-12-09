@@ -1,4 +1,4 @@
-// @use "../functions/toRem";
+@use "../functions/toRem" as fun;
 
 #FAQ-modul-e-szlaki {
   --accordion-space-unit: 1em;
@@ -10,7 +10,6 @@
 
   .faq-accordion {
     list-style: none;
-    // padding-top: toRem(300);
   }
   .faq-accordion--animated .faq-accordion__label::before {
     transition: transform 0.3s,
@@ -53,14 +52,14 @@
     transform: rotate(0);
   }
   .faq-accordion__input:checked + .faq-accordion__label::after {
-    background-position: -32px 0;
+    background-position: fun.toRem(-32) 0;
   }
   .faq-accordion__input:checked ~ .faq-accordion__sub {
     display: block;
   }
   .faq-accordion__sub--l1 .faq-accordion__label {
-    // padding-left: calc(1.25em + 16px);
-    padding-left: calc(var(--accordion-space-md) + 16px);
+    // padding-left: calc(1.25em + fun.toRem(16));
+    padding-left: calc(var(--accordion-space-md) + fun.toRem(16));
     background: var(--background);
   }
 
@@ -69,11 +68,11 @@
   }
   .faq-accordion__sub--l2 .faq-accordion__label,
   .faq-accordion__sub--l2 .faq-accordion__content {
-    //   padding-left: calc(1.5em + 32px);
+    //   padding-left: calc(1.5em + fun.toRem(32));
     padding-left: calc(
-      var(--accordion-space-md) + var(--accordion-space-xxxs) + 32px
+      var(--accordion-space-md) + var(--accordion-space-xxxs) + fun.toRem(32)
     );
 
-    //   padding-left: calc(var(--accordion-space-md) + 16px);
+    //   padding-left: calc(var(--accordion-space-md) + fun.toRem(16));
   }
 }

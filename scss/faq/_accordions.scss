@@ -1,138 +1,79 @@
+// @use "../functions/toRem";
 
-:root {
-  --space-unit: 1em;
-  --space-xxxxs: calc(0.125 * var(--space-unit));
-  --space-xxxs: calc(0.25 * var(--space-unit));
-  --space-xxs: calc(0.375 * var(--space-unit));
-  --space-xs: calc(0.5 * var(--space-unit));
-  --space-sm: calc(0.75 * var(--space-unit));
-  --space-md: calc(1.25 * var(--space-unit));
-  --space-lg: calc(2 * var(--space-unit));
-  --space-xl: calc(3.25 * var(--space-unit));
-  --space-xxl: calc(5.25 * var(--space-unit));
-  --space-xxxl: calc(8.5 * var(--space-unit));
-  --space-xxxxl: calc(13.75 * var(--space-unit));
-  --component-padding: var(--space-md);
-  --radius-sm: calc(var(--radius, 0.25em) / 2);
-  --radius-md: var(--radius, 0.25em);
-  --radius-lg: calc(var(--radius, 0.25em) * 2);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.085), 0 1px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 1px 8px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 1px 8px rgba(0, 0, 0, 0.1), 0 16px 48px rgba(0, 0, 0, 0.1),
-    0 24px 60px rgba(0, 0, 0, 0.1);
-  --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --body-line-height: 1.4;
-  --heading-line-height: 1.2;
-}
+#FAQ-modul-e-szlaki {
+  --accordion-space-unit: 1em;
+  --accordion-space-xxxs: calc(0.25 * var(--accordion-space-unit));
+  --accordion-space-xxs: calc(0.375 * var(--accordion-space-unit));
+  --accordion-space-xs: calc(0.5 * var(--accordion-space-unit));
+  --accordion-space-sm: calc(0.75 * var(--accordion-space-unit));
+  --accordion-space-md: calc(1.25 * var(--accordion-space-unit));
 
-.cd-accordion {
-  background: hsl(218, 7%, 32%);
-  background: var(--cd-color-1);
-//   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1), 0 16px 48px rgba(0, 0, 0, 0.1),
-//     0 24px 60px rgba(0, 0, 0, 0.1);
-}
-.cd-accordion--animated .cd-accordion__label::before {
-  transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
-}
-.cd-accordion__sub {
-  display: none;
-  overflow: hidden;
-}
-.cd-accordion__sub--is-visible {
-  display: block;
-}
-.cd-accordion__item {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.cd-accordion__input {
-  position: absolute;
-  opacity: 0;
-}
-.cd-accordion__label { 
-  display: flex;
-  position: relative;
-  align-items: center;
-  padding: 0.75em 1.25em;
-  padding: var(--space-sm) var(--space-md);
-  background: hsl(218, 7%, 32%); 
-  color: hsl(0, 0%, 100%);
-  color: var(--color-white);
-  -ms-flex-align: center; 
-}
-.cd-accordion__label span {
-  -ms-flex-order: 3;
-  order: 3;
-}
+  .faq-accordion {
+    list-style: none;
+    // padding-top: toRem(300);
+  }
+  .faq-accordion--animated .faq-accordion__label::before {
+    transition: transform 0.3s,
+  }
+  .faq-accordion__sub {
+    display: none;
+    overflow: hidden;
+  }
+  .faq-accordion__sub--is-visible {
+    display: block;
+  }
+  .faq-accordion__item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .faq-accordion__input {
+    position: absolute;
+    opacity: 0;
+  }
+  .faq-accordion__label {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 0.75em 1.25em;
+    padding: var(--accordion-space-sm) var(--accordion-space-md);
+    cursor: pointer;
+    background: var(--background-green-hover);
+  }
 
-.cd-accordion__label::after,
-.cd-accordion__label--icon-folder::before {
-  content: "";
-  display: block;
-  width: 16px;
-  height: 16px;
-  margin-right: 0.25em;
-  margin-right: var(--space-xxxs);
-  background-image: url("../img/cd-icons.svg");
-  background-repeat: no-repeat;
-}
-.cd-accordion__label--icon-folder::before {
-  -ms-flex-order: 1;
-  order: 1;
-}
-.cd-accordion__label::after {
-  -ms-flex-order: 2;
-  order: 2;
-}
-.cd-accordion__label--icon-folder::before {
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  background-position: 0 0;
-}
-.cd-accordion__label--icon-folder::after {
-  background-position: -16px 0;
-}
-.cd-accordion__label--icon-img::after {
-  background-position: -48px 0;
-}
-.cd-accordion__input:checked + .cd-accordion__label::before {
-  -webkit-transform: rotate(0);
-  -ms-transform: rotate(0);
-  transform: rotate(0);
-}
-.cd-accordion__input:checked + .cd-accordion__label::after {
-  background-position: -32px 0;
-}
-.cd-accordion__input:checked ~ .cd-accordion__sub {
-  display: block;
-}
-.cd-accordion__sub--l1 .cd-accordion__label {
-  padding-left: calc(1.25em + 16px);
-  padding-left: calc(var(--space-md) + 16px);
-  background: hsl(218, 7%, 20.8%);
-  background: hsl(
-    var(--cd-color-1-h),
-    var(--cd-color-1-s),
-    calc(var(--cd-color-1-l) * 0.65)
-  );
-}
+  .faq-accordion__content {
+    display: block;
+    position: relative; 
+    // padding: 0.75em 1.25em;
+    padding: var(--accordion-space-sm) var(--accordion-space-md);
+  }
 
-.cd-accordion__item:last-child .cd-accordion__label {
-  box-shadow: none;
-}
-.cd-accordion__sub--l2 .cd-accordion__label {
-  padding-left: calc(1.5em + 32px);
-  padding-left: calc(var(--space-md) + var(--space-xxxs) + 32px);
-}
-.cd-accordion__sub--l3 .cd-accordion__label {
-  padding-left: calc(1.5em + 48px);
-  padding-left: calc(var(--space-md) + var(--space-xxxs) + 48px);
+  .faq-accordion__input:checked + .faq-accordion__label::before {
+    transform: rotate(0);
+  }
+  .faq-accordion__input:checked + .faq-accordion__label::after {
+    background-position: -32px 0;
+  }
+  .faq-accordion__input:checked ~ .faq-accordion__sub {
+    display: block;
+  }
+  .faq-accordion__sub--l1 .faq-accordion__label {
+    // padding-left: calc(1.25em + 16px);
+    padding-left: calc(var(--accordion-space-md) + 16px);
+    background: var(--background);
+  }
+
+  .faq-accordion__item:last-child .faq-accordion__label {
+    box-shadow: none;
+  }
+  .faq-accordion__sub--l2 .faq-accordion__label,
+  .faq-accordion__sub--l2 .faq-accordion__content {
+    //   padding-left: calc(1.5em + 32px);
+    padding-left: calc(
+      var(--accordion-space-md) + var(--accordion-space-xxxs) + 32px
+    );
+
+    //   padding-left: calc(var(--accordion-space-md) + 16px);
+  }
 }

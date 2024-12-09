@@ -18,13 +18,13 @@
     <main class="container">
 
         <!-- POMOCNICZY PRZEŁĄCZNIK MOTYWU -->
-        <div id="toggle-theme-btn">
+        <!-- <div id="toggle-theme-btn">
             <label class="toggle">
                 <input class="toggle-checkbox" type="checkbox">
                 <div class="toggle-switch"></div>
                 <span class="toggle-label">Dark mode</span>
             </label>
-        </div>
+        </div> -->
 
         <!-- <div id="test">
 
@@ -436,42 +436,23 @@
                     <footer class="mc4-padding-md">
                         <div class="mc4-flex mc4-justify-end mc4-gap-xs">
                             <button class="mc4-btn mc4-btn--subtle js-modal__close">Cancel</button>
-                            <button class="mc4-btn mc4-btn--primary">Install</button>
+                            <button id="toast-button-test" class="mc4-btn mc4-btn--primary">Toast test</button>
                         </div>
                     </footer>
                 </div>
+            </div> 
 
-                <button class="modal__close-btn modal__close-btn--outer mc4-display@md js-modal__close js-tab-focus">
-                    <svg class="mc4-icon mc4-icon--sm" viewBox="0 0 24 24">
-                        <title>Close modal window</title>
-                        <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="3" y1="3" x2="21" y2="21" />
-                            <line x1="21" y1="3" x2="3" y2="21" />
-                        </g>
-                    </svg>
-                </button>
-            </div>
-
-            <p class="ta1-color-contrast-medium ta1-margin-bottom-sm">👇 Click multiple times to show multiple notifications.</p>
-
-             
-            <button id="successBtn" onclick="openToast('success')">Success</button>
-            <button id="warningBtn" onclick="openToast('warning')">Warning</button>
-            <button id="errorBtn" onclick="openToast('error')">Error</button>
-            <button id="infoBtn" onclick="openToast('info')">Info</button>
-
-            <section id="toast" class="info">
+            <div id="toast" class="info" style="display: none;">
                 <div id="icon-wrapper">
-                  <div id="icon"></div>
+                    <div id="icon"></div>
                 </div>
                 <div id="toast-message">
-                  <h4>Status</h4>
-                  <p>Descriptive Message.</p>
+                    <h4>Status</h4>
+                    <p>Descriptive Message.</p>
                 </div>
                 <button id="toast-close"></button>
                 <div id="timer"></div>
-              </section>
+            </div>
         </section>
         <!-- FAQ END -->
 

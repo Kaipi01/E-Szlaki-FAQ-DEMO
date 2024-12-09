@@ -17,14 +17,11 @@
 
   .main-menu-list {
     --navgation-link-border-radius: 10px;
-    display: none;
 
-    @media (min-width: 62em) {
-      display: flex;
-      flex-flow: row wrap;
-      width: 100%;
-      list-style: none;
-    }
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    list-style: none;
   }
   .main-menu-list li {
     flex-basis: 1;

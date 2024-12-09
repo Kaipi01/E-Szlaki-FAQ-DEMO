@@ -49,8 +49,7 @@
     }
 
     .faq-current-questions-panel {
-      width: 100%;
-      // overflow-x: hidden;
+      width: 100%; 
       overflow: hidden;
 
       @media (min-width: $content-breakpoint) {

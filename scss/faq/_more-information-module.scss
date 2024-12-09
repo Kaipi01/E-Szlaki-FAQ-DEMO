@@ -2,8 +2,7 @@
 @use "../components/links" as *;
 @use "../functions/toRem" as fun;
 
-#more-information-module { 
-
+#more-information-module {
   --page-shift-value: -60%;
 
   .main-content {
@@ -29,7 +28,7 @@
   }
   .main-menu-list li {
     flex-basis: 1;
-    flex-grow: 1; 
+    flex-grow: 1;
   }
   .main-menu-list .link-page {
     @extend .link;
@@ -38,9 +37,9 @@
     width: 100%;
     border-radius: 0;
 
-    @media (min-width: 87.5em) { 
+    @media (min-width: 87.5em) {
       font-size: 1rem;
-    } 
+    }
 
     &:active,
     &:visited {
@@ -52,94 +51,27 @@
     }
   }
 
-  .card-body { 
-    width: 100%;
-    margin: 0 auto; 
-    // overflow-y: auto;
-    transition: all 0.6s ease-in-out;
+  .card-body {
+    position: absolute;
 
     top: 0;
-      position: absolute; 
-      //position: relative; 
-      left: var(--page-shift-value); // 0
-      //width: 50%; 
-      // height: 42rem; 
-  } 
-
-  .card-body-pgactive {
-    left: var(--page-shift-value); //0
+    left: var(--page-shift-value);
+    width: 100%;
+    margin: 0 auto;
+    transition: all 0.6s ease-in-out;
   }
-  .screen-main {
-    @media (min-width: 62em) {
-      z-index: 81;
-      // overflow-y: auto;
-    }
-
-    .logo {
-      display: block;
-      width: 100%;
-      max-width: 17rem;
-      margin: 0 auto;
-      margin-top: 1rem;
-    }
-
-    .text {
-      color: var(--font-color);
-      text-align: center;
-
-      @media (min-width: 87.5em) {
-        font-size: 1rem;
-      }
-    }
-  }
-  @media (min-width: 62em) {
-    .screen-page-single {
-      --translateY-value: -12.5rem;
-      visibility: hidden;
-      left: 0; // -50% 
-      transform: translateY(var(--translateY-value));
-    }
-  }
-  @media (min-width: 62em) {
-    .screen-page {
-      z-index: 11;
-      opacity: 0;
-    }
-  } 
 
   .screen-page {
-    //display: none;
-    // max-height: fun.toRem(500);
-    // overflow-y: auto;
-
+    z-index: 11;
     left: var(--page-shift-value);
+    opacity: 0;
   }
 
-  .screen-page-active { 
+  .screen-page-active {
     visibility: visible;
     z-index: 22;
-    left: 0; // -50%
+    left: 0;
     transform: translateY(0px);
     opacity: 1;
-    //display: block;
-  }
-
-  .link-icon-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center; 
-    gap: 1rem;
-  }
-
-  .symbol-card {
-    @media (min-width: 32em) {
-      max-width: 12rem;
-    }
   }
 }

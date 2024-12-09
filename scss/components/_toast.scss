@@ -1,0 +1,249 @@
+#toast {
+  display: flex;
+  position: fixed;
+  z-index: 90;
+  top: 1rem;
+  right: 0.5rem;
+  align-items: center;
+  width: fit-content;
+  max-width: 400px;
+  padding: 10px 14px;
+  overflow: hidden; 
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#icon-wrapper {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  background: var(--secondary);
+}
+
+#icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--primary);
+}
+#icon::before,
+#icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  background: var(--secondary);
+}
+
+#toast-message {
+  padding: 5px 20px 5px 10px;
+}
+#toast-message h4,
+#toast-message p {
+  margin: 0;
+  line-height: 1.2em;
+}
+#toast-message h4 {
+  color: #404040;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+#toast-message p {
+  color: #606060;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+#toast-close {
+  position: relative;
+  padding: 12px;
+  transition: background 0.2s ease-in-out;
+  border: none;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+#toast-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+#toast-close::before,
+#toast-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 12px;
+  transition: background 0.2s ease-in-out;
+  border-radius: 5px;
+  background: #606060;
+}
+#toast-close:hover::before,
+#toast-close:hover::after {
+  background: #404040;
+}
+#toast-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#toast-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes close {
+  from {
+    visibility: visible;
+    top: 5px;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    visibility: hidden;
+    top: -25px;
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes open {
+  from {
+    visibility: hidden;
+    top: -25px;
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    top: 5px;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+#timer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  border-top-right-radius: 5px;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+.timer-animation {
+  animation: countdown 5s linear forwards;
+}
+@keyframes countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* ----------------------- */
+/* Success Styling         */
+/* ----------------------- */
+.success {
+  --primary: #2dd743;
+  --secondary: #e3fee6;
+}
+.success #icon {
+  transform: rotate(-45deg);
+}
+.success #icon::before {
+  width: 10px;
+  height: 3px;
+  transform: translate(calc(-50% + 1px), calc(-50% + 1px));
+}
+.success #icon::after {
+  width: 3px;
+  height: 6px;
+  transform: translate(calc(-50% - 3px), calc(-50% - 1px));
+}
+
+/* ----------------------- */
+/* Warning Styling         */
+/* ----------------------- */
+.warning {
+  --primary: #f29208;
+  --secondary: #ffeedf;
+}
+.warning #icon::before {
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, calc(-50% + 4px));
+}
+.warning #icon::after {
+  width: 3px;
+  height: 7px;
+  transform: translate(-50%, calc(-50% - 2px));
+}
+
+/* ----------------------- */
+/* Error Styling           */
+/* ----------------------- */
+.error {
+  --primary: #e63435;
+  --secondary: #ffeaec;
+}
+.error #icon::before {
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, calc(-50% + 4px));
+}
+.error #icon::after {
+  width: 3px;
+  height: 7px;
+  transform: translate(-50%, calc(-50% - 2px));
+}
+
+/* ----------------------- */
+/* Info Styling            */
+/* ----------------------- */
+.info {
+  --primary: #42c0f2;
+  --secondary: #cfeffc;
+}
+.info #icon::before {
+  width: 3px;
+  height: 7px;
+  transform: translate(-50%, calc(-50% + 2px));
+}
+.info #icon::after {
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, calc(-50% - 4px));
+}
+
+main button {
+  padding: 0.6em 1.5em;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#successBtn {
+  border: 1px solid #2dd743;
+  background: #e3fee6;
+  color: #2dd743;
+}
+
+#warningBtn {
+  border: 1px solid #f29208;
+  background: #ffeedf;
+  color: #f29208;
+}
+
+#errorBtn {
+  border: 1px solid #e63435;
+  background: #ffeaec;
+  color: #e63435;
+} 

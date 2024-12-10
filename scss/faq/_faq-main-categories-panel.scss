@@ -6,14 +6,11 @@
     height: fit-content;
     padding: 0;
     overflow: hidden;
-    background-color: var(--green);
+    background-color: var(--light-blue);
 
     .faq-categories-nav {
-      list-style: none;
+      list-style: none; 
 
-      .category-item {
-      }
-      
       .faq-category-link {
         width: 100%;
         margin: 0;

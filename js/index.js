@@ -7,15 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const faqModuleToast = new FAQModuleToast(
     FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast"
   );
-
-  document
-    .querySelector("#toast-button-test")
-    .addEventListener("click", (e) => {
-      faqModuleToast.open("success");
-      // warning
-      // success
-      // error
-    });
+  //faqModuleToast.open("success");
+  // warning
+  // success
+  // error
 
   new FAQAccordionModule(
     FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated"

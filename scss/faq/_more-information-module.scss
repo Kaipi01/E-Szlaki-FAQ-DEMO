@@ -3,7 +3,8 @@
 @use "../functions/toRem" as fun;
 
 #more-information-module {
-  --page-shift-value: -60%;
+  --page-shift-value: -50%;
+  --animation-duration-time: 0.4s;
 
   .main-content {
     position: relative;
@@ -12,7 +13,7 @@
   .main-menu {
     display: flex;
     width: 100%;
-    transition: all 0.6s ease-in-out;
+    transition: all var(--animation-duration-time) ease-in-out;
   }
 
   .main-menu-list {
@@ -55,7 +56,7 @@
     left: var(--page-shift-value);
     width: 100%;
     margin: 0 auto;
-    transition: all 0.6s ease-in-out;
+    transition: all var(--animation-duration-time) ease-in-out;
   }
 
   .screen-page {

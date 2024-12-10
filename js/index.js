@@ -14,7 +14,7 @@ const closeToast = () => {
 };
 
 const openToast = (type) => {
-  if (toast.style.display != "none") return
+  if (toast.style.display != "none") return;
 
   toast.style.display = "flex";
 
@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // linki są dynamicznie generowane na podstawie atrybutu "data-screen"
   new ContentScreens("#more-information-module");
+
+
+
 });
 
 // pomoc
@@ -57,6 +60,7 @@ function toggleTheme() {
 
 class ContentScreens {
   constructor(mainContainerSelector) {
+    this.ANIMATION_DURATION_TIME = 400;
     this.mainContainer = document.querySelector(mainContainerSelector);
     this.menuList = this.mainContainer.querySelector(".main-menu-list");
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
@@ -87,11 +91,31 @@ class ContentScreens {
     });
   }
 
-  bindPageLinks() {
+  bindPageLinks() { 
+    // Mechanizm throttle do zabezpieczenia animacji
+    const throttle = (callback, delay = this.ANIMATION_DURATION_TIME) => {
+      let shouldWait = false; 
+  
+      return (...args) => {
+        if (shouldWait) return 
+  
+        callback(...args); 
+        shouldWait = true
+  
+        setTimeout(() => {
+          shouldWait = false; 
+        }, delay);
+      };
+    } 
+
+    const showPageThrottle = throttle((link) => {
+      this.showPage(link); 
+    });
+
     this.pageLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
-        event.preventDefault();
-        this.showPage(link);
+        event.preventDefault(); 
+        showPageThrottle(link); 
       });
     });
   }
@@ -123,13 +147,12 @@ class ContentScreens {
 
     if (prevPage) {
       prevPage.classList.remove("screen-page-active");
-      //prevPage.style.position = "absolute";
     }
     nextPage.classList.add("screen-page-active");
 
     setTimeout(() => {
       nextPage.style.position = "relative";
-    }, 601);
+    }, this.ANIMATION_DURATION_TIME + 1);
   }
 
   getScreenData(screen) {
@@ -335,6 +358,10 @@ class FAQAccordionModule {
     return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 }
+
+
+  
+
 
 // File#: _1_modal-window
 // Usage: codyhouse.co/license

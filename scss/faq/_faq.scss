@@ -44,7 +44,7 @@
 
     .faq-current-questions-panel {
       width: 100%;
-      min-height: fun.toRem(650);
+      min-height: fun.toRem(450);
       overflow: hidden;
 
       @media (min-width: $content-breakpoint) {
@@ -54,7 +54,7 @@
 
     .faq-contact-us-panel {
       padding: 3rem 0;
-      border-radius: 60px;
+      border-radius: 25px;
       background-color: var(--light-green-30);
       text-align: center;
 

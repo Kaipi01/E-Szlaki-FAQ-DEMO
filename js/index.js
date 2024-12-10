@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
-
+  const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal";
+  
   // const themeTogglerBtn = document.querySelector("#toggle-theme-btn input");
   // themeTogglerBtn.addEventListener("change", toggleTheme);
 
@@ -12,33 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // success
   // error
 
+  const faqContactModalEl = document.querySelector(FAQ_CONTACT_MODAL_ID_SELECTOR)
+  const faqContactModal = new FAQModuleContactModal(faqContactModalEl)
+
   new FAQAccordionModule(
     FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated"
   );
-
-  // linki są dynamicznie generowane na podstawie atrybutu "data-screen"
+ 
   new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);
 
-  //initialize the Modal objects
-  const modals = document.getElementsByClassName("js-modal");
-  // generic focusable elements string selector
-
-  if (modals.length > 0) {
-    const modalArrays = [];
-
-    for (let i = 0; i < modals.length; i++) {
-      modalArrays.push(new FAQModuleContactModal(modals[i]));
+  window.addEventListener("keydown", (event) => {
+    //close modal window on esc
+    if (event.key && event.key.toLowerCase() == "escape") {
+      faqContactModal.closeModal()
     }
-
-    window.addEventListener("keydown", (event) => {
-      //close modal window on esc
-      if (event.key && event.key.toLowerCase() == "escape") {
-        for (let i = 0; i < modalArrays.length; i++) {
-          modalArrays[i].closeModal();
-        }
-      }
-    });
-  }
+  }); 
 });
 
 // pomoc
@@ -56,35 +45,18 @@ function toggleTheme() {
 class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
     this.ANIMATION_DURATION_TIME = 400;
-    this.mainContainer = document.querySelector(mainContainerSelector);
-    //this.menuList = this.mainContainer.querySelector(".main-menu-list");
+    this.mainContainer = document.querySelector(mainContainerSelector); 
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
     this.init();
   }
 
-  init() {
-    //this.generateNavigation();
+  init() { 
     this.pageLinks = this.mainContainer.querySelectorAll(".faq-category-link");
     this.bindPageLinks();
     this.showPage(this.pageLinks[0]);
-  }
-
-  // generateNavigation() {
-  //   this.screens.forEach((screen) => {
-  //     const li = document.createElement("li");
-  //     const link = document.createElement("a");
-  //     const screenData = this.getScreenData(screen);
-
-  //     link.href = `#${screenData.slug}`;
-  //     link.className = "link-page";
-  //     link.textContent = screenData.name;
-  //     li.appendChild(link);
-
-  //     this.menuList.appendChild(li);
-  //   });
-  // }
+  } 
 
   bindPageLinks() {
     // Mechanizm throttle do zabezpieczenia animacji

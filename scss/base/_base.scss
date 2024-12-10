@@ -15,10 +15,11 @@ html {
 }
 
 body {
+  padding: 4rem 0;
   background-color: var(--background);
   color: var(--font-color);
   font-family: sans-serif;
-} 
+}
 
 .container {
   position: relative;

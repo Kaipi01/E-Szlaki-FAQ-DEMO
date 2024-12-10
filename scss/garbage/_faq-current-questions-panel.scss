@@ -2,9 +2,21 @@
 @use "../components/links" as *;
 @use "../functions/toRem" as fun;
 
-#more-information-module {
-  --page-shift-value: -50%;
-  --animation-duration-time: 0.4s;
+#FAQ-modul-e-szlaki {
+  $content-breakpoint: 76em;
+  
+  .faq-current-questions-panel {
+    --page-shift-value: -50%;
+    --animation-duration-time: 0.4s;
+
+    width: 100%; 
+    overflow: hidden;
+
+    @media (min-width: $content-breakpoint) {
+      grid-column: span 3;
+    }
+  }
+
 
   .main-content {
     position: relative;
@@ -15,7 +27,6 @@
     width: 100%;
     transition: all var(--animation-duration-time) ease-in-out;
   }
-
   .main-menu-list {
     --navgation-link-border-radius: 10px;
 
@@ -48,7 +59,6 @@
       background-color: var(--green);
     }
   }
-
   .card-body {
     position: absolute;
 
@@ -58,13 +68,11 @@
     margin: 0 auto;
     transition: all var(--animation-duration-time) ease-in-out;
   }
-
   .screen-page {
     z-index: 11;
     left: var(--page-shift-value);
     opacity: 0;
   }
-
   .screen-page-active {
     visibility: visible;
     z-index: 22;
@@ -72,4 +80,5 @@
     transform: translateY(0px);
     opacity: 1;
   }
+
 }

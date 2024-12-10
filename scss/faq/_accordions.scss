@@ -38,7 +38,7 @@
     padding: 0.75em 1.25em;
     padding: var(--accordion-space-sm) var(--accordion-space-md);
     cursor: pointer;
-    // background: var(--background-green-hover);
+    background: var(--background-green-hover);
   }
 
   .faq-accordion__content {
@@ -58,7 +58,6 @@
     display: block;
   }
   .faq-accordion__sub--l1 .faq-accordion__label {
-    // padding-left: calc(1.25em + fun.toRem(16));
     padding-left: calc(var(--accordion-space-md) + fun.toRem(16));
     background: var(--background);
   }
@@ -72,7 +71,5 @@
     padding-left: calc(
       var(--accordion-space-md) + var(--accordion-space-xxxs) + fun.toRem(32)
     );
-
-    //   padding-left: calc(var(--accordion-space-md) + fun.toRem(16));
   }
 }

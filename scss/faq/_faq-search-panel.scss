@@ -1,0 +1,13 @@
+@use "../functions/toRem" as fun;
+
+#FAQ-modul-e-szlaki {
+  .faq-search-panel {
+    .faq-search-box {
+      width: 100%;
+      max-width: 31.25rem;
+      min-height: 50px;
+      background-color: black;
+      color: #fff;
+    }
+  }
+}

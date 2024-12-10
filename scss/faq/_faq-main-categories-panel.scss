@@ -1,0 +1,47 @@
+@use "../functions/toRem" as fun;
+@use "../components/links";
+
+#FAQ-modul-e-szlaki {
+  .faq-main-categories-panel {
+    .faq-categories-nav {
+    }
+
+    .main-menu {
+        display: flex;
+        width: 100%;
+        transition: all var(--animation-duration-time) ease-in-out;
+      }
+      .main-menu-list {
+        --navgation-link-border-radius: 10px;
+    
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        list-style: none;
+      }
+      .main-menu-list li {
+        flex-basis: 1;
+        flex-grow: 1;
+      }
+      .main-menu-list .link-page {
+        @extend .link;
+        @extend .variant2;
+        @extend .small;
+        width: 100%;
+        border-radius: 0;
+    
+        @media (min-width: 87.5em) {
+          font-size: 1rem;
+        }
+    
+        &:active,
+        &:visited {
+          text-decoration: none;
+        }
+    
+        &.active {
+          background-color: var(--green);
+        }
+      }
+  }
+}

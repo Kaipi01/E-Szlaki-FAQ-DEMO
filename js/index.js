@@ -1,64 +1,64 @@
-const toast = document.querySelector("#toast");
-const toastTimer = document.querySelector("#timer");
-const closeToastBtn = document.querySelector("#toast-close");
-let countdown;
-
-const closeToast = () => {
-  toast.style.animation = "close 0.3s cubic-bezier(.87,-1,.57,.97) forwards";
-  toastTimer.classList.remove("timer-animation");
-  clearTimeout(countdown);
-
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 300);
-};
-
-const openToast = (type) => {
-  if (toast.style.display != "none") return;
-
-  toast.style.display = "flex";
-
-  setTimeout(() => {
-    toast.classList = [type];
-    toast.style.animation = "open 0.3s cubic-bezier(.47,.02,.44,2) forwards";
-    toastTimer.classList.add("timer-animation");
-    clearTimeout(countdown);
-    countdown = setTimeout(() => {
-      closeToast();
-    }, 5000);
-  }, 0);
-};
-
-document.querySelector("#toast-button-test").addEventListener("click", (e) => {
-  openToast("success");
-});
-
-closeToastBtn.addEventListener("click", closeToast);
-
 document.addEventListener("DOMContentLoaded", function () {
+  const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
+
   // const themeTogglerBtn = document.querySelector("#toggle-theme-btn input");
   // themeTogglerBtn.addEventListener("change", toggleTheme);
 
-  new FAQAccordionModule(".cd-accordion--animated");
+  const faqModuleToast = new FAQModuleToast(
+    FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast"
+  );
+
+  document
+    .querySelector("#toast-button-test")
+    .addEventListener("click", (e) => {
+      faqModuleToast.open("success");
+      // warning
+      // success
+      // error
+    });
+
+  new FAQAccordionModule(
+    FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated"
+  );
 
   // linki są dynamicznie generowane na podstawie atrybutu "data-screen"
-  new ContentScreens("#more-information-module");
+  new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);
 
+  //initialize the Modal objects
+  const modals = document.getElementsByClassName("js-modal");
+  // generic focusable elements string selector
 
+  if (modals.length > 0) {
+    const modalArrays = [];
 
+    for (let i = 0; i < modals.length; i++) {
+      modalArrays.push(new FAQModuleContactModal(modals[i]));
+    }
+
+    window.addEventListener("keydown", (event) => {
+      //close modal window on esc
+      if (event.key && event.key.toLowerCase() == "escape") {
+        for (let i = 0; i < modalArrays.length; i++) {
+          modalArrays[i].closeModal();
+        }
+      }
+    });
+  }
 });
 
 // pomoc
 
 function toggleTheme() {
-  if (document.body.classList.contains("dark")) {
-    document.body.classList.remove("dark");
+  const documentBody = document.body;
+
+  if (documentBody.classList.contains("dark")) {
+    documentBody.classList.remove("dark");
   } else {
-    document.body.classList.add("dark");
+    documentBody.classList.add("dark");
   }
 }
 
-class ContentScreens {
+class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
     this.ANIMATION_DURATION_TIME = 400;
     this.mainContainer = document.querySelector(mainContainerSelector);
@@ -91,31 +91,31 @@ class ContentScreens {
     });
   }
 
-  bindPageLinks() { 
+  bindPageLinks() {
     // Mechanizm throttle do zabezpieczenia animacji
     const throttle = (callback, delay = this.ANIMATION_DURATION_TIME) => {
-      let shouldWait = false; 
-  
+      let shouldWait = false;
+
       return (...args) => {
-        if (shouldWait) return 
-  
-        callback(...args); 
-        shouldWait = true
-  
+        if (shouldWait) return;
+
+        callback(...args);
+        shouldWait = true;
+
         setTimeout(() => {
-          shouldWait = false; 
+          shouldWait = false;
         }, delay);
       };
-    } 
+    };
 
     const showPageThrottle = throttle((link) => {
-      this.showPage(link); 
+      this.showPage(link);
     });
 
     this.pageLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
-        event.preventDefault(); 
-        showPageThrottle(link); 
+        event.preventDefault();
+        showPageThrottle(link);
       });
     });
   }
@@ -160,8 +160,48 @@ class ContentScreens {
   }
 }
 
+class FAQModuleToast {
+  constructor(selector) {
+    this.toast = document.querySelector(selector);
+    this.toastTimer = this.toast.querySelector(".timer");
+    this.closeToastBtn = this.toast.querySelector(".toast-close");
+    this.countdown;
+    this.closeToastBtn.addEventListener("click", this.close);
+  }
+
+  close() {
+    this.toast.style.animation =
+      "close 0.3s cubic-bezier(.87,-1,.57,.97) forwards";
+    this.toastTimer.classList.remove("timer-animation");
+    clearTimeout(this.countdown);
+
+    setTimeout(() => {
+      this.toast.style.display = "none";
+    }, 300);
+  }
+
+  open(type) {
+    if (this.toast.style.display != "none") return;
+
+    this.toast.style.display = "flex";
+
+    setTimeout(() => {
+      this.toast.classList.add(type);
+      this.toast.style.animation =
+        "open 0.3s cubic-bezier(.47,.02,.44,2) forwards";
+      this.toastTimer.classList.add("timer-animation");
+      clearTimeout(this.countdown);
+      this.countdown = setTimeout(() => {
+        this.close();
+      }, 5000);
+    }, 0);
+  }
+}
+
 class FAQAccordionModule {
-  constructor() {
+  constructor(accordionsMenuSelector) {
+    this.accordionsMenuSelector = accordionsMenuSelector;
+
     //Closest() method
     if (!Element.prototype.matches) {
       Element.prototype.matches =
@@ -181,7 +221,7 @@ class FAQAccordionModule {
       };
     }
 
-    //Custom Event() constructor
+    // Custom Event() constructor
     if (typeof window.CustomEvent !== "function") {
       function CustomEvent(event, params) {
         params = params || {
@@ -208,8 +248,8 @@ class FAQAccordionModule {
   }
 
   init() {
-    const accordionsMenu = document.getElementsByClassName(
-      "faq-accordion--animated"
+    const accordionsMenu = document.querySelectorAll(
+      this.accordionsMenuSelector
     );
 
     if (accordionsMenu.length > 0 && window.requestAnimationFrame) {
@@ -359,14 +399,8 @@ class FAQAccordionModule {
   }
 }
 
-
-  
-
-
-// File#: _1_modal-window
-// Usage: codyhouse.co/license
-(function () {
-  var Modal = function (element) {
+class FAQModuleContactModal {
+  constructor(element) {
     this.element = element;
     this.triggers = document.querySelectorAll(
       '[aria-controls="' + this.element.getAttribute("id") + '"]'
@@ -383,16 +417,22 @@ class FAQAccordionModule {
     this.preventScrollEl = this.getPreventScrollEl();
     this.showClass = "modal--is-visible";
     this.initModal();
-  };
+    this.focusableElString =
+      '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
+  }
 
-  Modal.prototype.getPreventScrollEl = function () {
-    var scrollEl = false;
-    var querySelector = this.element.getAttribute("data-modal-prevent-scroll");
-    if (querySelector) scrollEl = document.querySelector(querySelector);
+  isVisible(element) {
+    return (
+      element.offsetWidth ||
+      element.offsetHeight ||
+      element.getClientRects().length
+    );
+  }
+  getPreventScrollEl() {
+    var scrollEl = document.body;
     return scrollEl;
-  };
-
-  Modal.prototype.initModal = function () {
+  }
+  initModal() {
     var self = this;
     //open modal when clicking on trigger buttons
     if (this.triggers) {
@@ -425,12 +465,13 @@ class FAQAccordionModule {
 
     // if modal is open by default -> initialise modal events
     if (this.element.classList.contains(this.showClass)) this.initModalEvents();
-  };
-
-  Modal.prototype.showModal = function () {
+  }
+  showModal() {
     var self = this;
     this.element.classList.add(this.showClass);
     this.getFocusableElements();
+
+
     if (this.moveFocusEl) {
       this.moveFocusEl.focus();
       // wait for the end of transitions before moving focus
@@ -442,9 +483,8 @@ class FAQAccordionModule {
     this.emitModalEvents("modalIsOpen");
     // change the overflow of the preventScrollEl
     if (this.preventScrollEl) this.preventScrollEl.style.overflow = "hidden";
-  };
-
-  Modal.prototype.closeModal = function () {
+  }
+  closeModal() {
     if (!this.element.classList.contains(this.showClass)) return;
     this.element.classList.remove(this.showClass);
     this.firstFocusable = null;
@@ -456,21 +496,18 @@ class FAQAccordionModule {
     this.emitModalEvents("modalIsClose");
     // change the overflow of the preventScrollEl
     if (this.preventScrollEl) this.preventScrollEl.style.overflow = "";
-  };
-
-  Modal.prototype.initModalEvents = function () {
+  }
+  initModalEvents() {
     //add event listeners
     this.element.addEventListener("keydown", this);
     this.element.addEventListener("click", this);
-  };
-
-  Modal.prototype.cancelModalEvents = function () {
+  }
+  cancelModalEvents() {
     //remove event listeners
     this.element.removeEventListener("keydown", this);
     this.element.removeEventListener("click", this);
-  };
-
-  Modal.prototype.handleEvent = function (event) {
+  }
+  handleEvent(event) {
     switch (event.type) {
       case "click": {
         this.initClick(event);
@@ -479,9 +516,8 @@ class FAQAccordionModule {
         this.initKeyDown(event);
       }
     }
-  };
-
-  Modal.prototype.initKeyDown = function (event) {
+  }
+  initKeyDown(event) {
     if (
       (event.keyCode && event.keyCode == 9) ||
       (event.key && event.key == "Tab")
@@ -496,9 +532,8 @@ class FAQAccordionModule {
       event.preventDefault();
       this.closeModal(); // close modal when pressing Enter on close button
     }
-  };
-
-  Modal.prototype.initClick = function (event) {
+  }
+  initClick(event) {
     //close modal when clicking on close button or modal bg layer
     if (
       !event.target.closest(".js-modal__close") &&
@@ -507,9 +542,8 @@ class FAQAccordionModule {
       return;
     event.preventDefault();
     this.closeModal();
-  };
-
-  Modal.prototype.trapFocus = function (event) {
+  }
+  trapFocus(event) {
     if (this.firstFocusable == document.activeElement && event.shiftKey) {
       //on Shift+Tab -> focus last focusable element when focus moves out of modal
       event.preventDefault();
@@ -520,97 +554,54 @@ class FAQAccordionModule {
       event.preventDefault();
       this.firstFocusable.focus();
     }
-  };
-
-  Modal.prototype.getFocusableElements = function () {
+  }
+  getFocusableElements() {
     //get all focusable elements inside the modal
-    var allFocusable = this.element.querySelectorAll(focusableElString);
+    var allFocusable = this.element.querySelectorAll(this.focusableElString);
     this.getFirstVisible(allFocusable);
     this.getLastVisible(allFocusable);
     this.getFirstFocusable();
-  };
-
-  Modal.prototype.getFirstVisible = function (elements) {
+  }
+  getFirstVisible(elements) {
     //get first visible focusable element inside the modal
     for (var i = 0; i < elements.length; i++) {
-      if (isVisible(elements[i])) {
+      if (this.isVisible(elements[i])) {
         this.firstFocusable = elements[i];
         break;
       }
     }
-  };
-
-  Modal.prototype.getLastVisible = function (elements) {
+  }
+  getLastVisible(elements) {
     //get last visible focusable element inside the modal
     for (var i = elements.length - 1; i >= 0; i--) {
-      if (isVisible(elements[i])) {
+      if (this.isVisible(elements[i])) {
         this.lastFocusable = elements[i];
         break;
       }
     }
-  };
-
-  Modal.prototype.getFirstFocusable = function () {
+  }
+  getFirstFocusable() {
     if (!this.modalFocus || !Element.prototype.matches) {
       this.moveFocusEl = this.firstFocusable;
       return;
     }
-    var containerIsFocusable = this.modalFocus.matches(focusableElString);
+    var containerIsFocusable = this.modalFocus.matches(this.focusableElString);
     if (containerIsFocusable) {
       this.moveFocusEl = this.modalFocus;
     } else {
       this.moveFocusEl = false;
-      var elements = this.modalFocus.querySelectorAll(focusableElString);
+      var elements = this.modalFocus.querySelectorAll(this.focusableElString);
       for (var i = 0; i < elements.length; i++) {
-        if (isVisible(elements[i])) {
+        if (this.isVisible(elements[i])) {
           this.moveFocusEl = elements[i];
           break;
         }
       }
       if (!this.moveFocusEl) this.moveFocusEl = this.firstFocusable;
     }
-  };
-
-  Modal.prototype.emitModalEvents = function (eventName) {
+  }
+  emitModalEvents(eventName) {
     var event = new CustomEvent(eventName, { detail: this.selectedTrigger });
     this.element.dispatchEvent(event);
-  };
-
-  function isVisible(element) {
-    return (
-      element.offsetWidth ||
-      element.offsetHeight ||
-      element.getClientRects().length
-    );
   }
-
-  window.Modal = Modal;
-
-  //initialize the Modal objects
-  var modals = document.getElementsByClassName("js-modal");
-  // generic focusable elements string selector
-  var focusableElString =
-    '[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable], audio[controls], video[controls], summary';
-  if (modals.length > 0) {
-    var modalArrays = [];
-    for (var i = 0; i < modals.length; i++) {
-      (function (i) {
-        modalArrays.push(new Modal(modals[i]));
-      })(i);
-    }
-
-    window.addEventListener("keydown", function (event) {
-      //close modal window on esc
-      if (
-        (event.keyCode && event.keyCode == 27) ||
-        (event.key && event.key.toLowerCase() == "escape")
-      ) {
-        for (var i = 0; i < modalArrays.length; i++) {
-          (function (i) {
-            modalArrays[i].closeModal();
-          })(i);
-        }
-      }
-    });
-  }
-})();
+}

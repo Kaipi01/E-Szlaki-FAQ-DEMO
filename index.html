@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./dist/main.css">
+    <link rel="stylesheet" href="./dist/main.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>FAQ</title>
 </head>
 
@@ -15,7 +16,7 @@
     -------------------------------------------------------------------------------
     -->
 
-    <main class="container">
+    <main class="container"> 
 
         <!-- POMOCNICZY PRZEŁĄCZNIK MOTYWU -->
         <!-- <div id="toggle-theme-btn">
@@ -28,7 +29,7 @@
 
         <!-- <div id="test">
 
-            <div style="height: 800px; width: 100%; background-color: rgb(43, 43, 43);"></div>
+            <div style="height: 100vh; width: 100%; background-color: rgb(43, 43, 43);"></div>
 
         </div> -->
 
@@ -48,32 +49,41 @@
                 </div>
 
                 <div class="faq-search-panel">
-                    <div class="faq-search-box">Input</div>
+                    
+                    <form class="faq-search-form"> 
+                        <button class="faq-search-btn link variant2" type="submit">
+                            <i class="cd-icon fa-solid fa-magnifying-glass"></i>
+                            <span class="sr-only">Szukaj</span>
+                        </button>
+                        <div class="faq-search-box">
+                            <input class="floating-label-control cd-form-control cd-width-100%" type="search"
+                                name="input-search" id="input-search" placeholder="Search">
+                            <label class="floating-label" for="input-search">Search</label> 
+                        </div>
+                    </form>
                 </div>
 
                 <nav class="faq-main-categories-panel modern-card">
-                    <p class="sr-only">Kategorie pytań</p>
-
-                    <ul class="main-menu-list"></ul>
+                    <p class="sr-only">Kategorie pytań</p> 
 
                     <ul class="faq-categories-nav">
                         <li class="category-item">
-                            <a class="category-link link variant4" href="#" aria-current="true">
+                            <a class="faq-category-link link variant4" href="#blog" aria-current="true">
                                 <span>Blog</span>
                             </a>
                         </li>
                         <li class="category-item">
-                            <a class="category-link link variant4" href="#">
-                                <span>Doloremque</span>
+                            <a class="faq-category-link link variant4" href="#repellendus">
+                                <span>Repellendus</span>
                             </a>
                         </li>
                         <li class="category-item">
-                            <a class="category-link link variant4" href="#">
-                                <span>Exercitationem</span>
+                            <a class="faq-category-link link variant4" href="#nobis-dolorem">
+                                <span>Nobis dolorem</span>
                             </a>
                         </li>
                         <li class="category-item">
-                            <a class="category-link link variant4" href="#">
+                            <a class="faq-category-link link variant4" href="#temporibus">
                                 <span>Temporibus</span>
                             </a>
                         </li>
@@ -84,8 +94,8 @@
 
                     <div class="content">
 
-                        <div class="card-body screen-page" data-screen='{"name": "Laborum", "slug": "laborum"}'>
-                            <p class="small-header">Laborum</p>
+                        <div id="blog" class="card-body screen-page" data-screen='{"name": "Blog", "slug": "blog"}'>
+                            <p class="small-header">Blog</p>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
@@ -114,7 +124,7 @@
                             </ul>
                         </div>
 
-                        <div class="card-body screen-page" data-screen='{"name": "Repellendus", "slug": "repellendus"}'>
+                        <div id="repellendus" class="card-body screen-page" data-screen='{"name": "Repellendus", "slug": "repellendus"}'>
                             <p class="small-header">Repellendus</p>
 
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, exercitationem fuga totam
@@ -132,7 +142,7 @@
                             <img src="https://picsum.photos/200/300" alt="">
                         </div>
 
-                        <div class="card-body screen-page" data-screen='{"name": "Nobis dolorem", "slug": "nobis-dolorem"}'>
+                        <div id="nobis-dolorem" class="card-body screen-page" data-screen='{"name": "Nobis dolorem", "slug": "nobis-dolorem"}'>
                             <p class="small-header">Nobis dolorem</p>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
@@ -186,8 +196,8 @@
                             </ul>
                         </div>
 
-                        <div class="card-body screen-page" data-screen='{"name": "Non consequuntur", "slug": "non-consequuntur"}'>
-                            <p class="small-header">Non consequuntur</p>
+                        <div id="temporibus" class="card-body screen-page" data-screen='{"name": "Temporibus", "slug": "temporibus"}'>
+                            <p class="small-header">Temporibus</p>
                             
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
@@ -450,8 +460,7 @@
                 <div class="timer"></div>
             </div>
         </section>
-        <!-- FAQ END -->
-
+        <!-- FAQ END --> 
     </main>
 
     <script src="./js/index.js"></script>

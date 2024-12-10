@@ -1,21 +1,25 @@
 @use "../functions/toRem" as fun;
 @use "./accordions";
+@use "../components/modern-card";
 @use "./faq-current-questions-panel";
 @use "./faq-main-categories-panel";
 @use "./faq-search-panel";
 
 #FAQ-modul-e-szlaki {
-  padding: 5rem 0;
+  @extend %modern-card;
+  padding: 4rem 2rem;
   $content-breakpoint: 76em;
 
   .faq-main-content {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 1.5rem; 
+    // row-gap: 1.5rem;
+    gap: 1rem;
 
     @media (min-width: $content-breakpoint) {
       grid-template-columns: repeat(4, 1fr);
-      row-gap: 2.5rem;
+      // row-gap: 2.5rem;
+      gap: 2rem;
     }
 
     .faq-main-header {
@@ -31,19 +35,18 @@
     .faq-search-panel {
       @media (min-width: $content-breakpoint) {
         place-items: end;
-      } 
+      }
     }
 
     .faq-main-categories-panel {
       z-index: 81;
-      min-height: fun.toRem(650);
-      
     }
 
-    .faq-current-questions-panel {  
-      width: 100%; 
+    .faq-current-questions-panel {
+      width: 100%;
+      min-height: fun.toRem(650);
       overflow: hidden;
-  
+
       @media (min-width: $content-breakpoint) {
         grid-column: span 3;
       }

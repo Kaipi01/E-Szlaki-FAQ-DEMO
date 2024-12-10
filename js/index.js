@@ -62,7 +62,7 @@ class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
     this.ANIMATION_DURATION_TIME = 400;
     this.mainContainer = document.querySelector(mainContainerSelector);
-    this.menuList = this.mainContainer.querySelector(".main-menu-list");
+    //this.menuList = this.mainContainer.querySelector(".main-menu-list");
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
@@ -70,26 +70,26 @@ class FAQModuleContentScreens {
   }
 
   init() {
-    this.generateNavigation();
-    this.pageLinks = this.mainContainer.querySelectorAll(".link-page");
+    //this.generateNavigation();
+    this.pageLinks = this.mainContainer.querySelectorAll(".faq-category-link");
     this.bindPageLinks();
     this.showPage(this.pageLinks[0]);
   }
 
-  generateNavigation() {
-    this.screens.forEach((screen) => {
-      const li = document.createElement("li");
-      const link = document.createElement("a");
-      const screenData = this.getScreenData(screen);
+  // generateNavigation() {
+  //   this.screens.forEach((screen) => {
+  //     const li = document.createElement("li");
+  //     const link = document.createElement("a");
+  //     const screenData = this.getScreenData(screen);
 
-      link.href = `#${screenData.slug}`;
-      link.className = "link-page";
-      link.textContent = screenData.name;
-      li.appendChild(link);
+  //     link.href = `#${screenData.slug}`;
+  //     link.className = "link-page";
+  //     link.textContent = screenData.name;
+  //     li.appendChild(link);
 
-      this.menuList.appendChild(li);
-    });
-  }
+  //     this.menuList.appendChild(li);
+  //   });
+  // }
 
   bindPageLinks() {
     // Mechanizm throttle do zabezpieczenia animacji
@@ -114,14 +114,14 @@ class FAQModuleContentScreens {
 
     this.pageLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
-        event.preventDefault();
+        event.preventDefault(); // TODO: Wyłącz dla mniejszych rozdzielczości
         showPageThrottle(link);
       });
     });
   }
 
   showPage(link) {
-    const activeMenu = this.mainContainer.querySelector(".link-page.active");
+    const activeMenu = this.mainContainer.querySelector(".faq-category-link.active");
     const prevActivePage = this.mainContainer.querySelector(
       ".screen-page-active"
     );

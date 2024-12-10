@@ -3,45 +3,22 @@
 
 #FAQ-modul-e-szlaki {
   .faq-main-categories-panel {
-    .faq-categories-nav {
-    }
+    height: fit-content;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--green);
 
-    .main-menu {
-        display: flex;
-        width: 100%;
-        transition: all var(--animation-duration-time) ease-in-out;
+    .faq-categories-nav {
+      list-style: none;
+
+      .category-item {
       }
-      .main-menu-list {
-        --navgation-link-border-radius: 10px;
-    
-        display: flex;
-        flex-flow: row wrap;
+      
+      .faq-category-link {
         width: 100%;
-        list-style: none;
-      }
-      .main-menu-list li {
-        flex-basis: 1;
-        flex-grow: 1;
-      }
-      .main-menu-list .link-page {
-        @extend .link;
-        @extend .variant2;
-        @extend .small;
-        width: 100%;
+        margin: 0;
         border-radius: 0;
-    
-        @media (min-width: 87.5em) {
-          font-size: 1rem;
-        }
-    
-        &:active,
-        &:visited {
-          text-decoration: none;
-        }
-    
-        &.active {
-          background-color: var(--green);
-        }
       }
+    }
   }
 }

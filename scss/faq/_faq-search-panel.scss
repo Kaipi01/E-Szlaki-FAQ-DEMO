@@ -2,12 +2,34 @@
 
 #FAQ-modul-e-szlaki {
   .faq-search-panel {
-    .faq-search-box {
+    .faq-search-form {
+      display: flex;
+      align-items: center;
       width: 100%;
-      max-width: 31.25rem;
-      min-height: 50px;
-      background-color: black;
-      color: #fff;
+
+      .faq-search-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: fun.toRem(47);
+        padding: 0 1rem !important;
+        border-radius: 0.375em;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        font-size: 1.15rem;
+      }
+    }
+
+    .faq-search-box {
+      position: relative;
+      width: 100%;
+
+      input[type="search"] {
+        min-height: fun.toRem(47);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-color: var(--light-green);
+      }
     }
   }
 }

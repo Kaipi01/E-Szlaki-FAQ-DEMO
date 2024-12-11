@@ -3,14 +3,15 @@
 #FAQ-modul-e-szlaki {
   .faq-current-questions-panel {
     position: relative;
-    padding-inline: 1.5rem;
+    padding: 0;
+    //padding-inline: 1.5rem;
     // background-color: rgba(255, 255, 255, 0.8);
     background-color: var(--background-opacity);
     --page-shift-value: -50%;
     --animation-duration-time: 0.4s; 
 
     @media (min-width: 76em) {
-      padding-inline: 2rem;
+      //padding-inline: 2rem;
     }
 
     .content {

@@ -35,12 +35,12 @@
     display: flex;
     position: relative;
     align-items: center;
-    padding: 3em 1.25em; 
-    font-size: 1.25rem;
+    padding: 1rem 1.5rem; 
+    font-size: 1.1rem;
     letter-spacing: 1px;
-    font-weight: bold;
-    padding: var(--accordion-space-sm) var(--accordion-space-md);
+    font-weight: bold; 
     cursor: pointer;
+    border-top: 2px solid var(--green);
     // background: var(--background-green-hover);
   }
 
@@ -49,6 +49,10 @@
     position: relative; 
     // padding: 0.75em 1.25em;
     padding: var(--accordion-space-sm) var(--accordion-space-md);
+    color: var(--font-color);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background-color: #fff;
   }
 
   // .faq-accordion__input ~ .faq-accordion__sub .faq-accordion__content { 

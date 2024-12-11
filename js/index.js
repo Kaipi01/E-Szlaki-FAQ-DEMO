@@ -1,10 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
-  const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal";
-  
-  // const themeTogglerBtn = document.querySelector("#toggle-theme-btn input");
-  // themeTogglerBtn.addEventListener("change", toggleTheme);
+const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
+const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal"; 
 
+document.addEventListener("DOMContentLoaded", function () {
   const faqModuleToast = new FAQModuleToast(
     FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast"
   );
@@ -13,21 +10,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // success
   // error
 
-  const faqContactModalEl = document.querySelector(FAQ_CONTACT_MODAL_ID_SELECTOR)
-  const faqContactModal = new FAQModuleContactModal(faqContactModalEl)
+  const faqContactModalEl = document.querySelector(
+    FAQ_CONTACT_MODAL_ID_SELECTOR
+  );
+  const faqContactModal = new FAQModuleContactModal(faqContactModalEl);
 
   new FAQAccordionModule(
     FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated"
   );
- 
+
   new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);
 
   window.addEventListener("keydown", (event) => {
-    //close modal window on esc
     if (event.key && event.key.toLowerCase() == "escape") {
-      faqContactModal.closeModal()
+      faqContactModal.closeModal();
     }
-  }); 
+  });
 });
 
 // pomoc
@@ -45,18 +43,22 @@ function toggleTheme() {
 class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
     this.ANIMATION_DURATION_TIME = 400;
-    this.mainContainer = document.querySelector(mainContainerSelector); 
+    this.mainContainer = document.querySelector(mainContainerSelector);
+    this.screenIcon = document.querySelector(FAQ_MODULE_ID_SELECTOR + " .faq-module-main-icon");
+    this.currentScreenIconURL;
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
     this.init();
   }
 
-  init() { 
-    this.pageLinks = this.mainContainer.querySelectorAll(".faq-category-link");
+  init() {
+    this.pageLinks = this.mainContainer.querySelectorAll(
+      "[data-faq-category-link]"
+    );
     this.bindPageLinks();
-    this.showPage(this.pageLinks[0]);
-  } 
+    //this.showPage(this.pageLinks[0]);
+  }
 
   bindPageLinks() {
     // Mechanizm throttle do zabezpieczenia animacji
@@ -88,7 +90,9 @@ class FAQModuleContentScreens {
   }
 
   showPage(link) {
-    const activeMenu = this.mainContainer.querySelector(".faq-category-link.active");
+    const activeMenu = this.mainContainer.querySelector(
+      ".faq-category-link.active"
+    );
     const prevActivePage = this.mainContainer.querySelector(
       ".screen-page-active"
     );
@@ -103,8 +107,21 @@ class FAQModuleContentScreens {
 
       if (screenData.slug === this.linkPage) {
         this.animateChangePages(prevActivePage, screen);
+        this.animateChangeIcon(screenData.icon) 
       }
     });
+  }
+
+  animateChangeIcon(iconSrc) {
+    if (this.screenIcon && iconSrc && this.currentScreenIconURL != iconSrc) {
+      this.screenIcon.style.transform = "scale(0)";
+      this.currentScreenIconURL = iconSrc
+
+      setTimeout(() => { 
+       this.screenIcon.src = iconSrc 
+       this.screenIcon.style.transform = "scale(1)";
+      }, 300)  
+    }
   }
 
   animateChangePages(prevPage, nextPage) {
@@ -437,7 +454,6 @@ class FAQModuleContactModal {
     var self = this;
     this.element.classList.add(this.showClass);
     this.getFocusableElements();
-
 
     if (this.moveFocusEl) {
       this.moveFocusEl.focus();

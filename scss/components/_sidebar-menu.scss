@@ -1,0 +1,113 @@
+/* Visual styles */
+#FAQ-modul-e-szlaki {
+  .sidebar-menu {
+    position: relative;
+    padding-top: 2rem;
+    color: var(--font-color); 
+
+    .menu-tab {
+      input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+
+      input:not(:checked) + .menu-tab-label:hover .menu-tab-icon {
+        -webkit-animation: sidebar-menu-bounce 0.5s infinite;
+        animation: sidebar-menu-bounce 0.5s infinite;
+      }
+    }
+
+    .menu-tab-content {
+      z-index: 2;
+      max-height: 0;
+      color: #fff;
+      overflow: hidden;
+      transition: all 0.35s; 
+      background-color: var(--light-blue); 
+    }
+    .menu-tab input:checked ~ .menu-tab-content {
+      max-height: 40rem;
+      padding-top: 1.5rem;
+      // box-shadow: -2px 2px 10px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    .menu-tab-label,
+    .menu-tab-close {
+      display: flex;
+      position: relative;
+      z-index: 3;
+      align-items: center; 
+      overflow: hidden;
+      transition: all 0.4s ease-in-out;      
+      cursor: pointer;
+
+      * {
+        position: relative;
+        z-index: 2;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 150%;
+        height: 100%;
+        transition: all 0.4s ease-in-out; 
+      }
+
+      &:hover::before,
+      &:focus::before,
+      &:active::before {
+        transform: translateX(-30%);
+      }
+    } 
+
+    .menu-tab-label {
+      justify-content: center;
+      padding: 1.25rem 2rem;
+      transition: 0.3s;
+
+      .menu-tab-icon {
+        color: var(--font-color-green-hover);
+        font-size: 1.5rem;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        transform: scale(1.015); 
+
+        .menu-tab-icon {
+          color: var(--font-color);
+        }
+      }
+    }
+
+    .menu-tab-close {
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  @-webkit-keyframes sidebar-menu-bounce {
+    25% {
+      transform: translateY(0.15rem);
+    }
+    75% {
+      transform: translateY(-0.15rem);
+    }
+  }
+  @keyframes sidebar-menu-bounce {
+    25% {
+      transform: translateY(0.15rem);
+    }
+    75% {
+      transform: translateY(-0.15rem);
+    }
+  }
+}

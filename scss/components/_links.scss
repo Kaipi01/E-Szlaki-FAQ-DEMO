@@ -42,12 +42,12 @@
   }
   .link.variant2 {
     margin-top: 0rem;
-    background-color: var(--light-green);
+    background-color: var(--green); 
 
     &:hover,
     &:focus,
-    &:active {
-      background-color: var(--green);
+    &:active, &.active {
+      background-color: var(--light-green);
     }
   }
   .link.variant3 {

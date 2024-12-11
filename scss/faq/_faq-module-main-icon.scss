@@ -1,0 +1,11 @@
+@use "../functions/toRem" as fun;
+
+#FAQ-modul-e-szlaki {
+  .faq-module-main-icon {
+    position: absolute;
+    bottom: -100%;
+    left: -50%;
+    width: 120%; 
+    transition: all 0.3s ease-in-out;  
+  }
+}

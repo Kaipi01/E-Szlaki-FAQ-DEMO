@@ -4,6 +4,7 @@
 @use "./faq-current-questions-panel";
 @use "./faq-main-categories-panel";
 @use "./faq-search-panel";
+@use "./faq-module-main-icon";
 
 #FAQ-modul-e-szlaki {
   @extend %modern-card;

@@ -20,30 +20,31 @@
 
   textarea.cd-form-control {
     font-family: inherit;
-    resize: vertical; 
+    resize: vertical;
   }
 
   .cd-form-control {
     padding: 0.5rem 0.75rem;
     transition: 0.2s;
     border-radius: 0.375em;
-    background: hsl(240, 4%, 95%);
+    background: hsl(0, 0%, 98%);
     box-shadow: inset 0 0 0 1px hsl(240, 4%, 85%);
+    font-family: inherit;
     font-size: 1em;
     line-height: 1.2;
   }
 
   .cd-form-control::placeholder {
     opacity: 1;
-    color: hsl(240, 4%, 65%);
+    color: hsl(0, 0%, 50%);
   }
 
   .cd-form-control:focus,
   .cd-form-control:focus-within {
     outline: none;
     background: hsl(0, 0%, 100%);
-    box-shadow: inset 0 0 0 1px hsla(240, 4%, 85%, 0),
-      0 0 0 2px hsl(250, 84%, 54%), 0 0.3px 0.4px hsla(230, 13%, 9%, 0.025),
+    box-shadow: inset 0 0 0 1px hsla(240, 4%, 85%, 0), 0 0 0 2px var(--green),
+      0 0.3px 0.4px hsla(230, 13%, 9%, 0.025),
       0 0.9px 1.5px hsla(230, 13%, 9%, 0.05),
       0 3.5px 6px hsla(230, 13%, 9%, 0.1);
   }
@@ -94,7 +95,7 @@
     transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.2s;
     border-radius: 0.375em;
     background: hsl(0, 0%, 100%);
-    color: hsl(240, 4%, 65%);
+    color: hsl(0, 0%, 50%);
     font-size: 0.9375rem;
     line-height: 1;
     -webkit-clip-path: none;
@@ -107,7 +108,7 @@
   }
 
   .floating-label-control:placeholder-shown {
-    background-color: hsl(240, 4%, 95%);
+    background-color: hsl(0, 0%, 98%);
   }
 
   .floating-label-control:placeholder-shown + .floating-label {
@@ -132,10 +133,10 @@
     background-color: hsl(0, 0%, 100%);
   }
   .floating-label-control:focus ~ .cd-icon {
-    color: hsl(250, 84%, 54%);
+    color: var(--green);
   }
   .floating-label-control:focus + .floating-label {
-    color: hsl(250, 84%, 54%);
+    color: var(--green);
   }
 
   .cd-width-100\% {

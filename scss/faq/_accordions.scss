@@ -48,14 +48,22 @@
     padding: var(--accordion-space-sm) var(--accordion-space-md);
   }
 
+  .faq-accordion__input ~ .faq-accordion__sub .faq-accordion__content { 
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
   .faq-accordion__input:checked + .faq-accordion__label::before {
     transform: rotate(0);
   }
   .faq-accordion__input:checked + .faq-accordion__label::after {
     background-position: fun.toRem(-32) 0;
   }
-  .faq-accordion__input:checked ~ .faq-accordion__sub {
-    display: block;
+  .faq-accordion__input:checked ~ .faq-accordion__sub{
+    display: block; 
+  }
+  .faq-accordion__input:checked ~ .faq-accordion__sub .faq-accordion__content { 
+    opacity: 1;
   }
   .faq-accordion__sub--l1 .faq-accordion__label {
     padding-left: calc(var(--accordion-space-md) + fun.toRem(16));

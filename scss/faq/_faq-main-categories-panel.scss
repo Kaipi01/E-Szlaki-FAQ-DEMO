@@ -4,11 +4,12 @@
 #FAQ-modul-e-szlaki {
   .faq-main-categories-panel {
     height: fit-content;
-    padding: 0;
+    padding: 0; 
+    padding: 2rem 0;
     overflow: hidden;
-    background-color: var(--light-blue);
 
     .faq-categories-nav {
+      background-color: var(--light-blue);
       list-style: none; 
 
       .faq-category-link {

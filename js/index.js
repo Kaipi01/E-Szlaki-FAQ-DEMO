@@ -238,7 +238,7 @@ class FAQAccordionModule {
     const initHeight = !bool ? dropdown.offsetHeight : 0,
       finalHeight = !bool ? 0 : dropdown.offsetHeight;
 
-    this.setHeight(initHeight, finalHeight, dropdown, 200, () => {
+    this.setHeight(initHeight, finalHeight, dropdown, 250, () => {
       this.removeClass(dropdown, "faq-accordion__sub--is-visible");
       dropdown.removeAttribute("style");
     });

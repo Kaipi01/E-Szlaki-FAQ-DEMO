@@ -29,7 +29,7 @@
   }
   .faq-accordion__input {
     position: absolute;
-    opacity: 0;
+    opacity: 0; 
   }
   .faq-accordion__label {
     display: flex;
@@ -38,6 +38,7 @@
     padding: 1rem 1.5rem; 
     font-size: 1.1rem;
     letter-spacing: 1px;
+    transition: 0.3s;
     font-weight: bold; 
     cursor: pointer;
     border-top: 2px solid var(--green);
@@ -53,12 +54,13 @@
     font-size: 1.1rem;
     line-height: 1.5;
     background-color: #fff;
-  }
+  } 
 
-  // .faq-accordion__input ~ .faq-accordion__sub .faq-accordion__content { 
-  //   opacity: 0;
-  //   transition: all 0.3s;
-  // }
+  .faq-accordion__input:focus ~ .faq-accordion__label {
+
+    background-color: var(--green);
+    color: #fff;
+  }
 
   .faq-accordion__input:checked + .faq-accordion__label::before {
     transform: rotate(0);
@@ -68,10 +70,7 @@
   }
   .faq-accordion__input:checked ~ .faq-accordion__sub{
     display: block; 
-  }
-  // .faq-accordion__input:checked ~ .faq-accordion__sub .faq-accordion__content { 
-  //   opacity: 1;
-  // }
+  } 
   .faq-accordion__sub--l1 .faq-accordion__label {
     padding-left: calc(var(--accordion-space-md) + fun.toRem(16));
     background: var(--background);

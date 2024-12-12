@@ -9,6 +9,12 @@
         position: absolute;
         z-index: -1;
         opacity: 0;
+
+        &:focus {
+          & ~ .menu-tab-label {
+            background-color: var(--light-green);
+          }
+        }
       }
     }
 

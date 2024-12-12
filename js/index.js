@@ -1,42 +1,68 @@
 const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
-const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal"; 
+const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal";
+const FAQ_TOAST_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast";
+const FAQ_ACCORDIONS_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated";
+const FAQ_SIDEBAR_MENU_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .sidebar-menu";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const faqModuleToast = new FAQModuleToast(
-    FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast"
-  );
-  //faqModuleToast.open("success");
-  // warning
-  // success
-  // error
+  const faqModuleToast = new FAQModuleToast(FAQ_TOAST_MODULE_SELECTOR); 
+  
+  new FAQModuleContactModal(FAQ_CONTACT_MODAL_ID_SELECTOR);
 
-  const faqContactModalEl = document.querySelector(
-    FAQ_CONTACT_MODAL_ID_SELECTOR
-  );
-  const faqContactModal = new FAQModuleContactModal(faqContactModalEl);
+  new FAQAccordionModule(FAQ_ACCORDIONS_MODULE_SELECTOR);
 
-  new FAQAccordionModule(
-    FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated"
-  );
+  new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);  
 
-  new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);
+  new FAQModuleSideBarMenu(FAQ_SIDEBAR_MENU_MODULE_SELECTOR)
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key && event.key.toLowerCase() == "escape") {
-      faqContactModal.closeModal();
-    }
-  });
-});
+  const faqContactForm = document.querySelector(FAQ_CONTACT_MODAL_ID_SELECTOR + " .faq-contact-form")
+  const faqContactFormSubmitBtn = faqContactForm.querySelector('button[type="submit"]')
 
-// pomoc
+  faqContactFormSubmitBtn.addEventListener('click', (e) => {
+    e.preventDefault()
 
-function toggleTheme() {
-  const documentBody = document.body;
+    faqModuleToast.open("success");
+    // warning
+    // success
+    // error
+  })
+}); 
 
-  if (documentBody.classList.contains("dark")) {
-    documentBody.classList.remove("dark");
-  } else {
-    documentBody.classList.add("dark");
+class FAQModuleSideBarMenu {
+  constructor(selector) {
+    this.selector = selector
+    this.sidebarMenu = document.querySelector(this.selector);
+    this.menuTabsInputs = this.sidebarMenu.querySelectorAll(
+      '.menu-tab input[type="checkbox"]'
+    );
+    this.setEventListeners()
+  }
+
+  setLinksTabIndex(links, tabindexValue) {
+    links.forEach((a) => a.setAttribute("tabindex", tabindexValue));
+  }
+
+  setEventListeners() {
+    this.menuTabsInputs.forEach((input) => {
+      const links = this.sidebarMenu.querySelectorAll(
+        `#${input.id} ~ .menu-tab-content a[data-faq-category-link]`
+      ); 
+      this.setLinksTabIndex(links, "-1")
+  
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.target.click();
+        }
+      });
+  
+      input.addEventListener("change", () => {
+        if (input.checked) { 
+          this.setLinksTabIndex(links, "0")
+        } else {
+          this.setLinksTabIndex(links, "-1")
+        }
+      });
+    }); 
   }
 }
 
@@ -44,20 +70,34 @@ class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
     this.ANIMATION_DURATION_TIME = 400;
     this.mainContainer = document.querySelector(mainContainerSelector);
-    this.screenIcon = document.querySelector(FAQ_MODULE_ID_SELECTOR + " .faq-module-main-icon");
+    this.screenIcon = document.querySelector(
+      FAQ_MODULE_ID_SELECTOR + " .faq-module-main-icon"
+    );
     this.currentScreenIconURL;
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
+    this.windowWidthIsLessThanBreakpoint;
+    this.breakpointValue = this.remToPx(76);
     this.init();
+  } 
+  
+  remToPx(rem) {
+    const htmlElement = document.documentElement;
+    const fontSize = window.getComputedStyle(htmlElement).fontSize;
+    const baseFontSize =  parseFloat(fontSize);
+    return baseFontSize * rem;
   }
 
   init() {
     this.pageLinks = this.mainContainer.querySelectorAll(
       "[data-faq-category-link]"
     );
-    this.bindPageLinks();
-    //this.showPage(this.pageLinks[0]);
+    this.bindPageLinks(); 
+
+    window.addEventListener('resize', () => { 
+      this.windowWidthIsLessThanBreakpoint = window.innerWidth < this.breakpointValue;
+    })
   }
 
   bindPageLinks() {
@@ -82,8 +122,11 @@ class FAQModuleContentScreens {
     });
 
     this.pageLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault(); // TODO: Wyłącz dla mniejszych rozdzielczości
+      link.addEventListener("click", (event) => { 
+        if (! this.windowWidthIsLessThanBreakpoint) {
+          event.preventDefault();
+        }
+
         showPageThrottle(link);
       });
     });
@@ -107,7 +150,7 @@ class FAQModuleContentScreens {
 
       if (screenData.slug === this.linkPage) {
         this.animateChangePages(prevActivePage, screen);
-        this.animateChangeIcon(screenData.icon) 
+        this.animateChangeIcon(screenData.icon);
       }
     });
   }
@@ -115,12 +158,12 @@ class FAQModuleContentScreens {
   animateChangeIcon(iconSrc) {
     if (this.screenIcon && iconSrc && this.currentScreenIconURL != iconSrc) {
       this.screenIcon.style.transform = "scale(0)";
-      this.currentScreenIconURL = iconSrc
+      this.currentScreenIconURL = iconSrc;
 
-      setTimeout(() => { 
-       this.screenIcon.src = iconSrc 
-       this.screenIcon.style.transform = "scale(1)";
-      }, 300)  
+      setTimeout(() => {
+        this.screenIcon.src = iconSrc;
+        this.screenIcon.style.transform = "scale(1)";
+      }, 300);
     }
   }
 
@@ -384,8 +427,9 @@ class FAQAccordionModule {
 }
 
 class FAQModuleContactModal {
-  constructor(element) {
-    this.element = element;
+  constructor(selector) {
+    this.selector = selector
+    this.element = document.querySelector(this.selector);
     this.triggers = document.querySelectorAll(
       '[aria-controls="' + this.element.getAttribute("id") + '"]'
     );
@@ -449,6 +493,12 @@ class FAQModuleContactModal {
 
     // if modal is open by default -> initialise modal events
     if (this.element.classList.contains(this.showClass)) this.initModalEvents();
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key && event.key.toLowerCase() == "escape") {
+        this.closeModal();
+      }
+    });
   }
   showModal() {
     var self = this;

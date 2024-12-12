@@ -1,11 +1,18 @@
 @use "../functions/toRem" as fun;
+@use "../base/variables" as *;
 
 #FAQ-modul-e-szlaki {
-  .faq-module-main-icon {
+  .faq-module-main-icon {  
+    display: none;
     position: absolute;
-    bottom: -100%;
-    left: -50%;
-    width: 120%; 
-    transition: all 0.3s ease-in-out;  
+    right: 0;
+    bottom: -50%;
+    width: 100%;
+    max-width: fun.toRem(300);
+    transition: all 0.3s ease-in-out;
+
+    @media (min-width: $content-breakpoint) {
+      display: block;
+    }
   }
 }

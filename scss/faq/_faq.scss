@@ -1,4 +1,5 @@
 @use "../functions/toRem" as fun;
+@use "../base/variables" as *;
 @use "./accordions";
 @use "../components/modern-card";
 @use "./faq-current-questions-panel";
@@ -8,8 +9,7 @@
 
 #FAQ-modul-e-szlaki {
   @extend %modern-card;
-  padding: 4rem 2rem;
-  $content-breakpoint: 76em;
+  padding: 4rem 2rem; 
 
   .faq-main-content {
     display: grid;
@@ -54,7 +54,7 @@
     }
 
     .faq-contact-us-panel {
-      padding: 3rem 0;
+      padding: 3rem 1.5rem;
       border-radius: 25px;
       background-color: var(--light-green-30);
       text-align: center;

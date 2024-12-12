@@ -6,37 +6,11 @@
         transition: 0.3s;
       }
 
-      & .li-icon svg {
-        width: 35px;
-
-        path {
-          fill: var(--font-color-green-hover);
-        }
+      & .li-icon > i {
+        color: var(--font-color-green-hover);
+        font-size: 1.75rem;
       }
-    }
-
-    &.green-list--variant2 {
-      &.list {
-        & .li-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 55px;
-          height: 55px;
-          border-radius: 50%;
-          background-color: var(--light-green);
-          box-shadow: -9px 9px 23px 3px rgba(0, 0, 0, 0.75);
-        }
-
-        & li:nth-child(even) .li-icon {
-          background-color: var(--green);
-        }
-
-        & .li-icon svg path {
-          fill: #fff;
-        }
-      }
-    }
+    } 
 
     &.list {
       display: flex;

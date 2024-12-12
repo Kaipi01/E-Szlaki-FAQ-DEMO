@@ -61,6 +61,7 @@ body {
   }
 
   .basic-list {
+    padding: 1rem;
     list-style: initial;
 
     li {
@@ -101,7 +102,7 @@ body {
 
   .d-block {
     display: block;
-  } 
+  }
 
   .big-header {
     font-size: 2rem;
@@ -130,7 +131,7 @@ body {
   .small-header {
     font-size: 1.35rem;
     font-weight: bold;
-  } 
+  }
 
   .text {
     padding-bottom: 1.5rem;
@@ -145,7 +146,7 @@ body {
 
   .mx-auto {
     margin: 0 auto;
-  }   
+  }
   .pb-0 {
     padding-bottom: 0 !important;
   }

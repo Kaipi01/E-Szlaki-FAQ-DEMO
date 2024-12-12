@@ -95,10 +95,16 @@ class FAQModuleSideBarMenu {
   constructor(selector) {
     this.selector = selector;
     this.sidebarMenu = document.querySelector(this.selector);
-    this.menuTabsInputs = this.sidebarMenu.querySelectorAll(
-      '.menu-tab input[type="checkbox"]'
-    );
-    this.setEventListeners();
+
+    try {
+      this.menuTabsInputs = this.sidebarMenu.querySelectorAll(
+        '.menu-tab input[type="checkbox"]'
+      );
+      this.setEventListeners();
+    } catch(e) {
+      console.error(e)
+    }
+    
   }
 
   setLinksTabIndex(links, tabindexValue) {
@@ -131,7 +137,7 @@ class FAQModuleSideBarMenu {
 
 class FAQModuleContentScreens {
   constructor(mainContainerSelector) {
-    this.ANIMATION_DURATION_TIME = 400;
+    this.ANIMATION_DURATION_TIME = 600; // wartość musi być taka sama jak w #FAQ-modul-e-szlaki .faq-current-questions-panel {}
     this.mainContainer = document.querySelector(mainContainerSelector);
     this.screenIcon = document.querySelector(
       FAQ_MODULE_ID_SELECTOR + " .faq-module-main-icon"

@@ -41,13 +41,20 @@
       z-index: 81;
     }
 
-    .faq-current-questions-panel {
-      width: 100%;
+    .faq-current-questions-panel, .faq-search-results-content {
+      width: 100%; 
       min-height: fun.toRem(450);
       overflow: hidden;
 
       @media (min-width: $content-breakpoint) {
         grid-column: span 3;
+      }
+    }
+
+    .faq-search-results-content {  
+
+      @media (min-width: $content-breakpoint) {
+        grid-column: span 4;
       }
     }
 

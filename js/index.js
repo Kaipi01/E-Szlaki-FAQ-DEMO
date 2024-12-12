@@ -1,41 +1,104 @@
 const FAQ_MODULE_ID_SELECTOR = "#FAQ-modul-e-szlaki";
 const FAQ_CONTACT_MODAL_ID_SELECTOR = "#FAQ-modul-e-szlaki-contact-modal";
-const FAQ_TOAST_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast";
-const FAQ_ACCORDIONS_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated";
-const FAQ_SIDEBAR_MENU_MODULE_SELECTOR = FAQ_MODULE_ID_SELECTOR + " .sidebar-menu";
+const FAQ_TOAST_MODULE_SELECTOR =
+  FAQ_MODULE_ID_SELECTOR + " .faq-contact-form-toast";
+const FAQ_ACCORDIONS_MODULE_SELECTOR =
+  FAQ_MODULE_ID_SELECTOR + " .faq-accordion.faq-accordion--animated";
+const FAQ_SIDEBAR_MENU_MODULE_SELECTOR =
+  FAQ_MODULE_ID_SELECTOR + " .sidebar-menu";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const faqModuleToast = new FAQModuleToast(FAQ_TOAST_MODULE_SELECTOR); 
-  
+  const faqModuleToast = new FAQModuleToast(FAQ_TOAST_MODULE_SELECTOR);
+
   new FAQModuleContactModal(FAQ_CONTACT_MODAL_ID_SELECTOR);
 
   new FAQAccordionModule(FAQ_ACCORDIONS_MODULE_SELECTOR);
 
-  new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);  
+  new FAQModuleContentScreens(FAQ_MODULE_ID_SELECTOR);
 
-  new FAQModuleSideBarMenu(FAQ_SIDEBAR_MENU_MODULE_SELECTOR)
+  new FAQModuleSideBarMenu(FAQ_SIDEBAR_MENU_MODULE_SELECTOR);
 
-  const faqContactForm = document.querySelector(FAQ_CONTACT_MODAL_ID_SELECTOR + " .faq-contact-form")
-  const faqContactFormSubmitBtn = faqContactForm.querySelector('button[type="submit"]')
+  const faqContactForm = document.querySelector(
+    FAQ_CONTACT_MODAL_ID_SELECTOR + " .faq-contact-form"
+  );
 
-  faqContactFormSubmitBtn.addEventListener('click', (e) => {
-    e.preventDefault()
+  faqContactForm.addEventListener("submit", handleSubmitFAQContactForm);
 
-    faqModuleToast.open("success");
-    // warning
-    // success
-    // error
-  })
-}); 
+  function handleSubmitFAQContactForm(event) {
+    event.preventDefault();
+
+    const isValid = validateSubmitFAQContactForm(event.target);
+
+    if (isValid) {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_SUCCESS,
+        "Formularz został wysłany pomyślnie!"
+      );
+    }
+  }
+
+  function validateSubmitFAQContactForm(form) {
+    const nameInput = form.querySelector("#faq-contact-input-name");
+    const emailInput = form.querySelector("#faq-contact-input-email");
+    const questionTextarea = form.querySelector("#faq-contact-input-desc");
+    const privacyPolicyCheckbox = form.querySelector("#faq-contact-input-privace-policy");
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
+    let isValid = true;
+
+    if (nameInput.value.trim() === "") {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_WARNING,
+        "Pole Imię Nazwisko nie może być puste."
+      );
+      isValid = false;
+    }
+
+    if (!validateEmail(emailInput.value)) {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_WARNING,
+        "Wprowadź poprawny adres e-mail."
+      );
+      isValid = false;
+    }
+
+    if (questionTextarea.value.trim() === "") {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_WARNING,
+        "Pole Treść pytania nie może być puste."
+      );
+      isValid = false;
+    } else if (questionTextarea.value.length > 500) {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_WARNING,
+        "Treść pytania nie może przekraczać 500 znaków."
+      );
+      isValid = false;
+    }
+
+    if (!privacyPolicyCheckbox.checked) {
+      faqModuleToast.open(
+        FAQModuleToast.TYPE_WARNING,
+        "Musisz zaakceptować warunki polityki prywatności."
+      );
+      isValid = false;
+    }
+
+    return isValid;
+  }
+});
 
 class FAQModuleSideBarMenu {
   constructor(selector) {
-    this.selector = selector
+    this.selector = selector;
     this.sidebarMenu = document.querySelector(this.selector);
     this.menuTabsInputs = this.sidebarMenu.querySelectorAll(
       '.menu-tab input[type="checkbox"]'
     );
-    this.setEventListeners()
+    this.setEventListeners();
   }
 
   setLinksTabIndex(links, tabindexValue) {
@@ -46,23 +109,23 @@ class FAQModuleSideBarMenu {
     this.menuTabsInputs.forEach((input) => {
       const links = this.sidebarMenu.querySelectorAll(
         `#${input.id} ~ .menu-tab-content a[data-faq-category-link]`
-      ); 
-      this.setLinksTabIndex(links, "-1")
-  
+      );
+      this.setLinksTabIndex(links, "-1");
+
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.target.click();
         }
       });
-  
+
       input.addEventListener("change", () => {
-        if (input.checked) { 
-          this.setLinksTabIndex(links, "0")
+        if (input.checked) {
+          this.setLinksTabIndex(links, "0");
         } else {
-          this.setLinksTabIndex(links, "-1")
+          this.setLinksTabIndex(links, "-1");
         }
       });
-    }); 
+    });
   }
 }
 
@@ -77,15 +140,16 @@ class FAQModuleContentScreens {
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
-    this.windowWidthIsLessThanBreakpoint;
     this.breakpointValue = this.remToPx(76);
+    this.windowWidthIsLessThanBreakpoint =
+      window.innerWidth < this.breakpointValue;
     this.init();
-  } 
-  
+  }
+
   remToPx(rem) {
     const htmlElement = document.documentElement;
     const fontSize = window.getComputedStyle(htmlElement).fontSize;
-    const baseFontSize =  parseFloat(fontSize);
+    const baseFontSize = parseFloat(fontSize);
     return baseFontSize * rem;
   }
 
@@ -93,11 +157,12 @@ class FAQModuleContentScreens {
     this.pageLinks = this.mainContainer.querySelectorAll(
       "[data-faq-category-link]"
     );
-    this.bindPageLinks(); 
+    this.bindPageLinks();
 
-    window.addEventListener('resize', () => { 
-      this.windowWidthIsLessThanBreakpoint = window.innerWidth < this.breakpointValue;
-    })
+    window.addEventListener("resize", () => {
+      this.windowWidthIsLessThanBreakpoint =
+        window.innerWidth < this.breakpointValue;
+    });
   }
 
   bindPageLinks() {
@@ -122,8 +187,8 @@ class FAQModuleContentScreens {
     });
 
     this.pageLinks.forEach((link) => {
-      link.addEventListener("click", (event) => { 
-        if (! this.windowWidthIsLessThanBreakpoint) {
+      link.addEventListener("click", (event) => {
+        if (!this.windowWidthIsLessThanBreakpoint) {
           event.preventDefault();
         }
 
@@ -188,15 +253,25 @@ class FAQModuleContentScreens {
 }
 
 class FAQModuleToast {
+  static TYPE_SUCCESS = "success";
+  static TYPE_WARNING = "warning";
+  static TYPE_ERROR = "error";
+  static TYPE_INFO = "info";
+
   constructor(selector) {
     this.toast = document.querySelector(selector);
     this.toastTimer = this.toast.querySelector(".timer");
     this.closeToastBtn = this.toast.querySelector(".toast-close");
+
+    this.toastTitle = this.toast.querySelector(".toast-message-title");
+    this.toastMessage = this.toast.querySelector(".toast-message-text");
+
     this.countdown;
     this.closeToastBtn.addEventListener("click", this.close);
   }
 
-  close() {
+  close() { 
+
     this.toast.style.animation =
       "close 0.3s cubic-bezier(.87,-1,.57,.97) forwards";
     this.toastTimer.classList.remove("timer-animation");
@@ -207,10 +282,29 @@ class FAQModuleToast {
     }, 300);
   }
 
-  open(type) {
+  open(type, message = "") {
     if (this.toast.style.display != "none") return;
 
+    let toastTitle;
+    this.toast.classList.remove(FAQModuleToast.TYPE_SUCCESS, FAQModuleToast.TYPE_WARNING, FAQModuleToast.TYPE_ERROR,FAQModuleToast.TYPE_INFO);
     this.toast.style.display = "flex";
+
+    switch (type) {
+      case FAQModuleToast.TYPE_SUCCESS:
+        toastTitle = "Sukces!";
+        break;
+      case FAQModuleToast.TYPE_WARNING:
+        toastTitle = "Błąd!";
+        break;
+      case FAQModuleToast.TYPE_WARNING:
+        toastTitle = "Ostrzeżenie";
+        break;
+      default:
+        toastTitle = "Informacja";
+    }
+
+    this.toastTitle.textContent = toastTitle;
+    this.toastMessage.textContent = message;
 
     setTimeout(() => {
       this.toast.classList.add(type);
@@ -428,7 +522,7 @@ class FAQAccordionModule {
 
 class FAQModuleContactModal {
   constructor(selector) {
-    this.selector = selector
+    this.selector = selector;
     this.element = document.querySelector(this.selector);
     this.triggers = document.querySelectorAll(
       '[aria-controls="' + this.element.getAttribute("id") + '"]'

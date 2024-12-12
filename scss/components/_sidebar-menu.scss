@@ -23,8 +23,18 @@
       max-height: 0;
       overflow: hidden;
       transition: all 0.6s;
-      background-color: var(--light-blue);
+      background-color: var(--blue);
       color: #fff;
+
+      .sidebar-sub-menu {
+        .menu-tab-label {
+          background-color: transparent;
+
+          &:hover, &:focus, &:active, &.active {
+            background-color: var(--light-blue);
+          }
+        }
+      }
     }
     .menu-tab input:checked ~ .menu-tab-content {
       /* jeśli wysuwany kontent się nie mieści to zwiększ maksymalną wysokość */

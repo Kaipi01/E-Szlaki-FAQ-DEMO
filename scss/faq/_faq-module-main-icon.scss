@@ -5,10 +5,10 @@
   .faq-module-main-icon {  
     display: none;
     position: absolute;
-    right: 0;
-    bottom: -50%;
+    right: 10%;
+    bottom: -70%;
     width: 100%;
-    max-width: fun.toRem(300);
+    max-width: fun.toRem(350);
     transition: all 0.3s ease-in-out;
 
     @media (min-width: $content-breakpoint) {

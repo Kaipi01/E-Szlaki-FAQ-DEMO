@@ -4,81 +4,71 @@
 
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
 
     @media (min-width: $contact-form-breakpoint) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .faq-contact-form-question,
-    .custom-checkbox-group {
+    .faq-contact-form-question {
       @media (min-width: $contact-form-breakpoint) {
         grid-column: span 2;
       }
     }
+
+    .faq-contact-form-submit {
+      padding-inline: 3rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      place-self: end;
+    }
   }
 
-  textarea.cd-form-control {
+  textarea.faq-form-control {
     font-family: inherit;
     resize: vertical;
   }
 
-  .cd-form-control {
+  .faq-form-control {
+    width: 100%;
     padding: 0.5rem 0.75rem;
     transition: 0.2s;
     border-radius: 0.375em;
-    background: hsl(0, 0%, 98%);
+    background: hsla(0, 0%, 100%, 0.75);
     box-shadow: inset 0 0 0 1px hsl(240, 4%, 85%);
     font-family: inherit;
     font-size: 1em;
     line-height: 1.2;
   }
 
-  .cd-form-control::placeholder {
+  .faq-form-control::placeholder {
     opacity: 1;
     color: hsl(0, 0%, 50%);
   }
 
-  .cd-form-control:focus,
-  .cd-form-control:focus-within {
+  .faq-form-control:focus,
+  .faq-form-control:focus-within {
     outline: none;
-    background: hsl(0, 0%, 100%);
+    background: #fff;
     box-shadow: inset 0 0 0 1px hsla(240, 4%, 85%, 0), 0 0 0 2px var(--green),
       0 0.3px 0.4px hsla(230, 13%, 9%, 0.025),
       0 0.9px 1.5px hsla(230, 13%, 9%, 0.05),
       0 3.5px 6px hsla(230, 13%, 9%, 0.1);
   }
 
-  .cd-icon {
+  .faq-icon {
     --size: 1em;
-    display: inline-block;
+    display: inline-flex;
     flex-shrink: 0;
-    width: 1em;
-    max-width: initial;
-    height: 1em;
+    align-items: center;
+    justify-content: center; 
     fill: currentColor;
-    color: inherit;
+    color: inherit; 
+    font-size: 1.2rem;
     font-size: var(--size);
     line-height: 1;
-  }
-
-  .cd-icon--is-spinning {
-    animation: cd-icon-spin 1s infinite linear;
-  }
-
-  @keyframes cd-icon-spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .cd-icon use {
-    fill: currentColor;
-    color: inherit;
-  }
+  }   
 
   .floating-label-grid {
     display: grid;
@@ -94,7 +84,7 @@
     transform: translateY(-50%);
     transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.2s;
     border-radius: 0.375em;
-    background: hsl(0, 0%, 100%);
+    background: #fff;
     color: hsl(0, 0%, 50%);
     font-size: 0.9375rem;
     line-height: 1;
@@ -104,11 +94,11 @@
 
   .floating-label-control {
     padding: 0.75rem calc(1rem + 24px) 0.75rem 1rem;
-    background-color: hsl(0, 0%, 100%);
+    background-color: hsla(0, 0%, 100%, 0.75);
   }
 
   .floating-label-control:placeholder-shown {
-    background-color: hsl(0, 0%, 98%);
+    background-color: hsla(0, 0%, 100%, 0.75);
   }
 
   .floating-label-control:placeholder-shown + .floating-label {
@@ -118,32 +108,29 @@
     transform: translateY(-25%);
   }
 
-  .floating-label-control ~ .cd-icon {
+  .floating-label-control ~ .faq-icon {
     position: absolute;
     top: 50%;
     right: 1rem;
-    width: 24px;
-    height: 24px;
     transform: translateY(-50%);
-    color: hsl(225, 4%, 47%);
+    color: hsl(225, 4%, 47%); 
+    font-size: 1.2rem;
     pointer-events: none;
   }
 
   .floating-label-control:focus {
-    background-color: hsl(0, 0%, 100%);
+    background-color: #fff;
   }
-  .floating-label-control:focus ~ .cd-icon {
+  .floating-label-control:focus ~ .faq-icon {
     color: var(--green);
   }
   .floating-label-control:focus + .floating-label {
     color: var(--green);
-  }
-
-  .cd-width-100\% {
-    width: 100%;
-  }
-
-  .cd-position-relative {
+  } 
+  .faq-form-field {
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: space-between;
   }
 }

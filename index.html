@@ -29,23 +29,24 @@
                 <div class="header faq-main-header">
                     <p class="big-header">FAQ</p>
                     <p class="sub-header py-1">Najczęściej zadawane pytania</p>
-                    <p class="text faq-intro pb-4">
+                    <p class="text faq-intro pb-3">
                         Witaj! Ten moduł służy do szybkiego i wygodnego wyszukiwania odpowiedzi na najczęściej
                         pojawiające się pytania dotyczące naszego portalu. Jeśli jednak nie znajdziesz odpowiedzi na
                         swoje pytanie, zawsze możesz skontaktować się z nami za pomocą specjalnego formularza poniżej. Z
-                        przyjemnością pomożemy!<i> - Grupa E-Szlaki</i></p>
+                        przyjemnością pomożemy!<i> - Grupa E-Szlaki</i>
+                    </p>
                 </div>
 
                 <div class="faq-search-panel" style="position: relative;">
 
                     <form class="faq-search-form">
                         <button class="faq-search-btn link variant2" type="submit">
-                            <i class="cd-icon fa-solid fa-magnifying-glass"></i>
+                            <i class="faq-icon fa-solid fa-magnifying-glass"></i>
                             <span class="sr-only">Szukaj</span>
                         </button>
                         <div class="faq-search-box">
-                            <input class="floating-label-control cd-form-control cd-width-100%" type="search"
-                                name="input-search" id="input-search" placeholder="Search">
+                            <input class="floating-label-control faq-form-control " type="search" name="input-search"
+                                id="input-search" placeholder="Search">
                             <label class="floating-label" for="input-search">Search</label>
                         </div>
                     </form>
@@ -71,7 +72,7 @@
                                 <span>Blog</span>
                             </label>
                             <div class="menu-tab-content">
-                                <ul>
+                                <ul class="sidebar-sub-menu">
                                     <li class="category-item">
                                         <a data-faq-category-link class="menu-tab-label faq-category-link link variant2"
                                             href="#mistycyzm">
@@ -82,14 +83,15 @@
                                     <li class="category-item">
                                         <a data-faq-category-link class="menu-tab-label faq-category-link link variant2"
                                             href="#profilaktyka">
-                                            <i class="menu-tab-icon fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                            <i class="menu-tab-icon fa-solid fa-notes-medical" aria-hidden="true"></i>
+                                            
                                             <span>Profilaktyka</span>
                                         </a>
                                     </li>
                                     <li class="category-item">
                                         <a data-faq-category-link class="menu-tab-label faq-category-link link variant2"
                                             href="#wydarzenie">
-                                            <i class="menu-tab-icon fa-solid fa-notes-medical" aria-hidden="true"></i>
+                                            <i class="menu-tab-icon fa-solid fa-calendar-days" aria-hidden="true"></i>
                                             <span>Wydarzenie</span>
                                         </a>
                                     </li>
@@ -103,10 +105,10 @@
                                 <span>Aliqusemper</span>
                             </label>
                             <div class="menu-tab-content">
-                                <ul>
+                                <ul class="sidebar-sub-menu">
                                     <li class="category-item">
                                         <a data-faq-category-link class="menu-tab-label faq-category-link link variant2"
-                                            href="#maecenas">
+                                            href="#maecenas"> 
                                             <i class="menu-tab-icon fa-solid fa-sliders"></i>
                                             <span>Maecenas</span>
                                         </a>
@@ -117,7 +119,8 @@
                         <li class="category-item">
                             <a data-faq-category-link class="menu-tab-label faq-category-link link variant2"
                                 href="#nobis-dolorem">
-                                <i class="menu-tab-icon fa-solid fa-sliders"></i>
+                                
+                                <i class="menu-tab-icon fa-solid fa-user"></i>
                                 <span>Nobis dolorem</span>
                             </a>
                         </li>
@@ -130,32 +133,43 @@
 
                         <div id="start" class="card-body screen-page screen-page-active"
                             data-screen='{"slug": "start", "icon": "./images/question-icon.svg"}'>
-                            <p class="small-header">Start</p>
+                            
+                            <div class="card-header">
+                                <i class="card-icon fa-regular fa-circle-question"></i>
+                                <p class="small-header">Start</p>
+                            </div>
 
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, exercitationem fuga totam
-                            fugiat minus ipsam voluptas magnam commodi voluptatibus nesciunt hic, adipisci, distinctio
-                            reprehenderit? Omnis ipsam ex excepturi rerum eum delectus, voluptate vero non quibusdam
-                            inventore impedit, a aspernatur iusto! Repellendus id quaerat temporibus maiores, officia
-                            sapiente doloribus exercitationem, ratione eveniet quis, dolores libero soluta nemo
-                            delectus? Iste iure vel pariatur voluptatum repellat odit, quidem, sint sed nobis eveniet
-                            obcaecati suscipit maxime officiis aliquam, asperiores veritatis dolor excepturi inventore
-                            quaerat neque velit modi. Fugiat totam consequatur doloremque, porro obcaecati deleniti
-                            consectetur ex quis! Obcaecati quo optio doloremque quisquam totam voluptates itaque
-                            aliquid, commodi facere quos quam officia perferendis fugiat, dolorum sequi vitae inventore
-                            molestiae. Beatae nam repudiandae quos illum voluptatem dolorem ullam enim.
-
-                            <img src="https://picsum.photos/400/200" alt="">
+                            <div class="card-content">
+                                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, exercitationem fuga totam
+                                    fugiat minus ipsam voluptas magnam commodi voluptatibus nesciunt hic, adipisci, distinctio
+                                    reprehenderit? Omnis ipsam ex excepturi rerum eum delectus, voluptate vero non quibusdam
+                                    inventore impedit, a aspernatur iusto! Repellendus id quaerat temporibus maiores, officia
+                                    sapiente doloribus exercitationem, ratione eveniet quis, dolores libero soluta nemo
+                                    delectus? Iste iure vel pariatur voluptatum repellat odit, quidem, sint sed nobis eveniet
+                                    obcaecati suscipit maxime officiis aliquam, asperiores veritatis dolor excepturi inventore
+                                    quaerat neque velit modi. Fugiat totam consequatur doloremque, porro obcaecati deleniti
+                                    consectetur ex quis! Obcaecati quo optio doloremque quisquam totam voluptates itaque
+                                    aliquid, commodi facere quos quam officia perferendis fugiat, dolorum sequi vitae inventore
+                                    molestiae. Beatae nam repudiandae quos illum voluptatem dolorem ullam enim.</p>
+ 
+                            </div>
                         </div>
 
                         <div id="mistycyzm" class="card-body screen-page"
                             data-screen='{"slug": "mistycyzm", "icon": "./images/blog-icon.svg"}'>
-                            <p class="small-header">Mistycyzm</p>
+                            
+                            <div class="card-header"> 
+                                <i class="card-icon fa-solid fa-yin-yang" aria-hidden="true"></i>
+                                <p class="small-header">Mistycyzm</p>
+                            </div>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
-                                    <input class="faq-accordion__input" type="checkbox" name="category-mistycyzm-group-1" id="category-mistycyzm-group-1">
-                                    <label class="faq-accordion__label" for="category-mistycyzm-group-1">
+                                    <input class="faq-accordion__input" type="checkbox"
+                                        name="category-mistycyzm-group-1" id="category-mistycyzm-group-1">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="category-mistycyzm-group-1">
+                                        <i class="faq-accordion__label-icon fa-solid fa-hand-holding-heart"></i>
                                         <span>Prawo Przyciagania - Odkrywając Moc Myśli do Kreowania Własnej
                                             Rzeczywistości</span>
                                     </label>
@@ -233,7 +247,8 @@
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
                                     <input class="faq-accordion__input" type="checkbox"
                                         name="category-mistycyzm-group-2" id="category-mistycyzm-group-2">
-                                    <label class="faq-accordion__label" for="category-mistycyzm-group-2">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="category-mistycyzm-group-2">
+                                        <i class="faq-accordion__label-icon fa-solid fa-eye"></i>
                                         <span>Przebudzenie Ducha: Echa Przepowiedni Hopi i Połączenie z Ziemią
                                         </span>
                                     </label>
@@ -338,14 +353,19 @@
 
                         <div id="profilaktyka" class="card-body screen-page"
                             data-screen='{"slug": "profilaktyka", "icon": "./images/blog-icon.svg"}'>
-                            <p class="small-header">Profilaktyka</p>
+
+                            <div class="card-header"> 
+                                <i class="card-icon fa-solid fa-notes-medical" aria-hidden="true"></i>
+                                <p class="small-header">Profilaktyka</p>
+                            </div>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
                                     <input class="faq-accordion__input" type="checkbox"
                                         name="category-profilaktyka-group-1" id="category-profilaktyka-group-1">
-                                    <label class="faq-accordion__label" for="category-profilaktyka-group-1">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="category-profilaktyka-group-1">
+                                        <i class="faq-accordion__label-icon fa-solid fa-tree"></i>
                                         <span>Magiczne Właściwości Lasu: Jak Drzewa Wzmacniają Nasze Zdrowie i
                                             Samopoczucie</span>
                                     </label>
@@ -426,7 +446,8 @@
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
                                     <input class="faq-accordion__input" type="checkbox"
                                         name="category-profilaktyka-group-2" id="category-profilaktyka-group-2">
-                                    <label class="faq-accordion__label" for="category-profilaktyka-group-2">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="category-profilaktyka-group-2">
+                                        <i class="faq-accordion__label-icon fa-solid fa-mountain"></i>
                                         <span>Kryształ Górski: Tajemnice Króla Kryształów i Jego Wpływ na Zdrowie i
                                             Duchowość
                                         </span>
@@ -530,14 +551,19 @@
 
                         <div id="wydarzenie" class="card-body screen-page"
                             data-screen='{"slug": "wydarzenie", "icon": "./images/blog-icon.svg"}'>
-                            <p class="small-header">Wydarzenie</p>
+                            
+                            <div class="card-header"> 
+                                <i class="card-icon fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                <p class="small-header">Wydarzenie</p>
+                            </div>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
                                     <input class="faq-accordion__input" type="checkbox"
                                         name="category-wydarzenie-group-1" id="category-wydarzenie-group-1">
-                                    <label class="faq-accordion__label" for="category-wydarzenie-group-1">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="category-wydarzenie-group-1">
+                                        <i class="faq-accordion__label-icon fa-solid fa-wine-bottle"></i>
                                         <span>Magiczne Góry Złote: Odkrywanie sekretów Winiarni i Jaskini
                                             Radochowskiej</span>
                                     </label>
@@ -632,13 +658,18 @@
 
                         <div id="nobis-dolorem" class="card-body screen-page"
                             data-screen='{"slug": "nobis-dolorem", "icon": "./images/user-profile-icon.svg"}'>
-                            <p class="small-header">Nobis dolorem</p>
+                            
+
+                            <div class="card-header">
+                                <i class="card-icon fa-solid fa-user"></i>
+                                <p class="small-header">Nobis dolorem</p>
+                            </div>
 
                             <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
 
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
-                                    <input class="faq-accordion__input" type="checkbox" name="group-124" id="group-124">
-                                    <label class="faq-accordion__label" for="group-124">
+                                    <input class="faq-accordion__input" type="checkbox" name="group-3124" id="group-3124">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="group-3124">
                                         <span>Obcaecati quo optio doloremque quisquam ?</span>
                                     </label>
 
@@ -659,9 +690,86 @@
                                 </li>
 
                                 <li class="faq-accordion__item faq-accordion__item--has-children">
-                                    <input class="faq-accordion__input" type="checkbox" name="group-444" id="group-444">
-                                    <label class="faq-accordion__label" for="group-444">
+                                    <input class="faq-accordion__input" type="checkbox" name="group-7444" id="group-7444">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="group-7444">
                                         <span>Asperiores tempora repudiandae amet ?</span>
+                                    </label>
+
+                                    <ul class="faq-accordion__sub faq-accordion__sub--l1">
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="faq-accordion__item faq-accordion__item--has-children">
+                                    <input class="faq-accordion__input" type="checkbox" name="group-1444" id="group-1444">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="group-1444">
+                                        <span>Qui nostrum quam inventore doloribus autem beatae?</span>
+                                    </label>
+
+                                    <ul class="faq-accordion__sub faq-accordion__sub--l1">
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="maecenas" class="card-body screen-page"
+                            data-screen='{"slug": "maecenas", "icon": "./images/bar-chart-icon.svg"}'>
+                            <div class="card-header">
+                                <i class="card-icon fa-solid fa-sliders"></i>
+                                <p class="small-header">Maecenas</p>
+                            </div>
+
+                            <ul class="faq-accordion faq-accordion--animated margin-top-lg margin-bottom-lg">
+
+                                <li class="faq-accordion__item faq-accordion__item--has-children">
+                                    <input class="faq-accordion__input" type="checkbox" name="group-124" id="group-124">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="group-124">
+                                        <span>Derun empora repudiandae amet veniam iste aut!?</span>
+                                    </label>
+
+                                    <ul class="faq-accordion__sub faq-accordion__sub--l1">
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                        <li class="faq-accordion__item">
+                                            <span class="faq-accordion__content">Lorem, ipsum dolor sit amet consectetur
+                                                adipisicing elit. Possimus nesciunt necessitatibus, reprehenderit dolore
+                                                totam maiores deleniti illo asperiores tempora repudiandae amet veniam
+                                                iste aut!</span>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="faq-accordion__item faq-accordion__item--has-children">
+                                    <input class="faq-accordion__input" type="checkbox" name="group-444" id="group-444">
+                                    <label class="faq-accordion__label faq-accordion__label-root" for="group-444">
+                                        <span>Inventore, commodi dolorum debitis accusantium ab fuga consequuntur ipsa quis?</span>
                                     </label>
 
                                     <ul class="faq-accordion__sub faq-accordion__sub--l1">
@@ -682,23 +790,6 @@
 
                             </ul>
                         </div>
-
-                        <div id="maecenas" class="card-body screen-page"
-                            data-screen='{"slug": "maecenas", "icon": "./images/bar-chart-icon.svg"}'>
-                            <p class="small-header">Maecenas</p>
-
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, exercitationem fuga totam
-                            fugiat minus ipsam voluptas magnam commodi voluptatibus nesciunt hic, adipisci, distinctio
-                            reprehenderit? Omnis ipsam ex excepturi rerum eum delectus, voluptate vero non quibusdam
-                            inventore impedit, a aspernatur iusto! Repellendus id quaerat temporibus maiores, officia
-                            sapiente doloribus exercitationem, ratione eveniet quis, dolores libero soluta nemo
-                            delectus? Iste iure vel pariatur voluptatum repellat odit, quidem, sint sed nobis eveniet
-                            obcaecati suscipit maxime officiis aliquam, asperiores veritatis dolor excepturi inventore
-                            quaerat neque velit modi. Fugiat totam consequatur doloremque, porro obcaecati deleniti
-                            consectetur ex quis! Obcaecati quo optio doloremque quisquam totam voluptates itaque
-                            aliquid, commodi facere quos quam officia perferendis fugiat, dolorum sequi vitae inventore
-                            molestiae. Beatae nam repudiandae quos illum voluptatem dolorem ullam enim.
-                        </div>
                     </div>
 
                 </div>
@@ -707,7 +798,7 @@
 
                     <div class="header">
                         <p class="small-header">Nie ma tutaj odpowiedzi na Twoje pytanie?</p>
-                        <p class="text pt-1">
+                        <p class="text">
                             Skontaktuj się z nami! Chętnie odpowiemy na wszelkie dodatkowe wątpliwości.
                         </p>
                     </div>
@@ -722,57 +813,57 @@
             </div>
 
             <div id="FAQ-modul-e-szlaki-contact-modal" class="modal modal--animate-slide-up js-modal">
-                <fieldset class="modal__content modern-card" role="alertdialog" aria-labelledby="modal-title-1"
-                    aria-describedby="modal-description-1">
-                    <div class="modal__header">
-                        <p id="modal-title-1" class="small-header">Skontaktuj się z nami!</p>
+                <div class="modal__content modern-card" role="alertdialog" aria-labelledby="FAQ-modul-e-szlaki-contact-modal-title">
+                    <div class="shape-blob" aria-hidden="true"></div>
+                    <div class="shape-blob one" aria-hidden="true"></div>
+                    <div class="shape-blob two" aria-hidden="true"></div>
+
+                    <div class="modal__header pb-2">
+                        <p id="FAQ-modul-e-szlaki-contact-modal-title" class="small-header">Skontaktuj się z nami!</p>
 
                         <button class="modal__close-btn modal__close-btn--inner js-modal__close js-tab-focus">
                             <span class="sr-only">Zamknij</span>
-                            <svg class="modal__close-btn-icon" viewBox="0 0 16 16" aria-hidden="true">
-                                <g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-miterlimit="10">
-                                    <line x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line>
-                                    <line x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line>
-                                </g>
-                            </svg>
+                            <img class="modal__close-btn-icon" src="./images/close-icon.svg" alt="x" aria-hidden="true">
                         </button>
                     </div>
 
                     <form class="faq-contact-form">
 
-                        <div class="cd-position-relative">
-                            <input class="floating-label-control cd-form-control cd-width-100%" type="text"
-                                name="input-name" id="input-name" placeholder="Imię Nazwisko">
-                            <label class="floating-label" for="input-name">Imię Nazwisko</label>
+                        <div class="faq-form-field">
+                            <input class="floating-label-control faq-form-control " type="text" name="faq-contact-name"
+                                id="faq-contact-input-name" placeholder="Imię Nazwisko">
+                            <label class="floating-label" for="faq-contact-input-name">Imię Nazwisko</label>
 
-                            <i class="cd-icon fa-solid fa-id-card"></i>
+                            <i class="faq-icon fa-solid fa-id-card"></i>
                         </div>
 
-                        <div class="cd-position-relative">
-                            <input class="floating-label-control cd-form-control cd-width-100%" type="email"
-                                name="input-email" id="input-email" placeholder="Adres Email">
-                            <label class="floating-label" for="input-email">Adres Email</label>
+                        <div class="faq-form-field">
+                            <input class="floating-label-control faq-form-control " type="email"
+                                name="faq-contact-email" id="faq-contact-input-email" placeholder="Adres Email">
+                            <label class="floating-label" for="faq-contact-input-email">Adres Email</label>
 
-                            <i class="cd-icon fa-solid fa-envelope"></i>
+                            <i class="faq-icon fa-solid fa-envelope"></i>
                         </div>
 
-                        <div class="faq-contact-form-question cd-position-relative">
-                            <label class="floating-label" for="textarea">Treść pytania</label>
-                            <textarea rows="10" class="floating-label-control cd-form-control cd-width-100%"
-                                name="textarea" id="textarea" placeholder="Maksymalnie 500 znaków"></textarea>
+                        <div class="faq-contact-form-question faq-form-field">
+                            <label class="floating-label" for="faq-contact-input-desc">Treść pytania</label>
+                            <textarea rows="10" class="floating-label-control faq-form-control " name="faq-contact-desc"
+                                id="faq-contact-input-desc" placeholder="Maksymalnie 500 znaków"></textarea>
                         </div>
 
                         <div class="custom-checkbox-group">
-                            <input class="custom-checkbox-input" type="checkbox" id="privace-policy">
-                            <label class="custom-checkbox-label" for="privace-policy">
+                            <input class="custom-checkbox-input" name="faq-contact-privace-policy" type="checkbox"
+                                id="faq-contact-input-privace-policy">
+                            <label class="custom-checkbox-label" for="faq-contact-input-privace-policy">
                                 Akceptuje warunki polityki prywatności
                             </label>
                         </div>
 
-                        <button type="submit" class="faq-contact-form-submit link variant2">Submit</button>
-                    </form>
-            </div>
+                        <button type="submit" class="faq-contact-form-submit link variant2">
+                            Wyślij
+                        </button>
+                    </form> 
+                </div>
             </div>
 
             <div class="faq-contact-form-toast" style="display: none;">

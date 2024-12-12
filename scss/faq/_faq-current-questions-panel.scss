@@ -4,11 +4,16 @@
   .faq-current-questions-panel {
     position: relative;
     padding: 0;
-    //padding-inline: 1.5rem;
-    // background-color: rgba(255, 255, 255, 0.8);
+    
+    padding-block: 1.5rem;
     background-color: var(--background-opacity);
     --page-shift-value: -50%;
     --animation-duration-time: 0.4s; 
+    --card-padding-inline: 1.25rem;
+
+    @media (min-width: 55em) {
+      --card-padding-inline: 1.75rem;
+    }
 
     .content {
       position: relative;
@@ -16,12 +21,32 @@
 
     .card-body {
       position: absolute;
-
+      padding-bottom: 3rem;
       top: 0;
       left: var(--page-shift-value);
       width: 100%;
       margin: 0 auto;
       transition: all var(--animation-duration-time) ease-in-out;
+
+      .card-header {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem var(--card-padding-inline) 2rem var(--card-padding-inline); 
+
+        .small-header {
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+
+      .card-icon {
+        font-size: 1.85rem;
+      }
+
+      .card-content {
+        padding-inline: var(--card-padding-inline);
+      }
     }
     .screen-page {
       z-index: 11;

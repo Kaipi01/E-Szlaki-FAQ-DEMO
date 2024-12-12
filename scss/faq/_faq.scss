@@ -13,13 +13,11 @@
 
   .faq-main-content {
     display: grid;
-    grid-template-columns: 1fr;
-    // row-gap: 1.5rem;
+    grid-template-columns: 1fr; 
     gap: 1rem;
 
     @media (min-width: $content-breakpoint) {
-      grid-template-columns: repeat(4, 1fr);
-      // row-gap: 2.5rem;
+      grid-template-columns: repeat(4, 1fr); 
       gap: 2rem;
     }
 
@@ -29,7 +27,7 @@
       }
 
       .faq-intro {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
 

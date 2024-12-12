@@ -4,15 +4,16 @@
   .faq-contact-form-toast {
     display: flex;
     position: fixed;
-    z-index: 90;
-    top: 1rem;
-    right: 0.5rem;
+    z-index: 110;
+    top: 1.5rem;
+    right: 1.5rem;
     align-items: center;
+    justify-content: space-between;
     width: fit-content;
-    max-width: fun.toRem(400);
+    max-width: fun.toRem(600);
     padding: 0.75rem 1rem;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 15px;
     background: white;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 
@@ -106,8 +107,7 @@
     }
     .toast-message .toast-message-text {
       color: #606060;
-      font-size: 0.8rem;
-      font-weight: 300;
+      font-size: 1rem;
       letter-spacing: 0.05em;
     }
 
@@ -150,13 +150,13 @@
       from {
         visibility: visible;
         top: fun.toRem(5);
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
         opacity: 1;
       }
       to {
         visibility: hidden;
         top: fun.toRem(-25);
-        transform: translateX(-50%) scale(0.5);
+        transform: scale(0.5);
         opacity: 0;
       }
     }
@@ -165,13 +165,13 @@
       from {
         visibility: hidden;
         top: fun.toRem(-25);
-        transform: translateX(-50%) scale(0.5);
+        transform: scale(0.5);
         opacity: 0;
       }
       to {
         visibility: visible;
         top: fun.toRem(5);
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
         opacity: 1;
       }
     }

@@ -11,8 +11,18 @@
   .faq-accordion {
     list-style: none;
   }
-  .faq-accordion--animated .faq-accordion__label::before {
-    transition: transform 0.3s,
+  .faq-accordion__label::after {
+    content: '';
+    display: inline-block;
+    transform: rotate(180deg) translateY(50%);
+    transition: transform 0.3s;
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    width: 1.75rem;
+    height: 1.75rem;
+    background-repeat: no-repeat; 
+    right: 1rem;
+    top: 50%;
   }
   .faq-accordion__sub {
     display: none;
@@ -38,17 +48,33 @@
     padding: 1rem 1.5rem; 
     font-size: 1.1rem;
     letter-spacing: 1px;
+    padding-right: 3.5rem;
     transition: 0.3s;
     font-weight: bold; 
     cursor: pointer;
     border-top: 2px solid var(--green);
-    // background: var(--background-green-hover);
+
+    &-root {
+      background-color: var(--green); 
+      color: #fff;
+
+      &::after {
+        width: 2.25rem;
+        height: 2.25rem;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+
+      }
+    }
+
+    &-icon {
+      font-size: 2rem;
+      padding-right: 1rem;
+    }
   }
 
   .faq-accordion__content {
     display: block;
-    position: relative; 
-    // padding: 0.75em 1.25em;
+    position: relative;  
     padding: var(--accordion-space-sm) var(--accordion-space-md);
     color: var(--font-color);
     font-size: 1.1rem;
@@ -56,17 +82,15 @@
     background-color: #fff;
   } 
 
-  .faq-accordion__input:focus ~ .faq-accordion__label {
-
-    background-color: var(--green);
-    color: #fff;
+  .faq-accordion__input:focus ~ .faq-accordion__label { 
+    background-color: var(--very-light-gray); 
   }
 
-  .faq-accordion__input:checked + .faq-accordion__label::before {
-    transform: rotate(0);
-  }
+  .faq-accordion__input:focus ~ .faq-accordion__label-root { 
+    background-color: var(--light-green); 
+  } 
   .faq-accordion__input:checked + .faq-accordion__label::after {
-    background-position: fun.toRem(-32) 0;
+    transform: rotate(0) translateY(-50%);
   }
   .faq-accordion__input:checked ~ .faq-accordion__sub{
     display: block; 

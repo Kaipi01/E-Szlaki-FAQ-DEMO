@@ -24,3 +24,9 @@
 23 timing npm:load:setTitle Completed in 1ms
 24 timing npm:load:display Completed in 1ms
 25 verbose logfile logs-max:10 dir:D:\mateu\Desktop\E-Szlaki-Nowy-FAQ\src\npm-cache\_logs\2024-12-13T13_36_09_848Z-
+26 verbose logfile D:\mateu\Desktop\E-Szlaki-Nowy-FAQ\src\npm-cache\_logs\2024-12-13T13_36_09_848Z-debug-0.log
+27 timing npm:load:logFile Completed in 13ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 59ms
+31 silly logfile done cleaning log files

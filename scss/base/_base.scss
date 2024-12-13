@@ -104,39 +104,33 @@ body {
     display: block;
   }
 
-  .big-header {
-    font-size: 2rem;
+  .faq-big-header {
+    font-size: 3rem;
     font-weight: bold;
 
     @media (min-width: 50rem) {
-      font-size: 3rem;
+      font-size: 4rem;
     }
   }
 
-  .sub-header {
-    padding-block: 1.5rem;
-    color: var(--very-light-green);
-    font-size: 1.1rem;
+  .faq-sub-header {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+    color: var(--green); 
+    font-size: 1.35rem;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
-  }
+  } 
 
-  .sub-header-small {
-    @extend .sub-header;
-    padding-block: 0.35rem;
-    font-size: 0.8rem;
-  }
-
-  .small-header {
+  .faq-small-header {
     font-size: 1.35rem;
     font-weight: bold;
   }
 
   .text {
     padding-bottom: 1.5rem;
-    color: var(--font-color-gray);
-    font-size: 0.9rem;
+    color: var(--font-color-gray); 
     line-height: 1.5;
 
     &--narrow {

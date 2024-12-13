@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameInput = form.querySelector("#faq-contact-input-name");
     const emailInput = form.querySelector("#faq-contact-input-email");
     const questionTextarea = form.querySelector("#faq-contact-input-desc");
-    const privacyPolicyCheckbox = form.querySelector("#faq-contact-input-privace-policy");
+    const privacyPolicyCheckbox = form.querySelector(
+      "#faq-contact-input-privace-policy"
+    );
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
@@ -101,10 +103,9 @@ class FAQModuleSideBarMenu {
         '.menu-tab input[type="checkbox"]'
       );
       this.setEventListeners();
-    } catch(e) {
-      console.error(e)
+    } catch (e) {
+      console.error(e);
     }
-    
   }
 
   setLinksTabIndex(links, tabindexValue) {
@@ -136,8 +137,10 @@ class FAQModuleSideBarMenu {
 }
 
 class FAQModuleContentScreens {
+  static FAQ_MODULE_CHANGE_SCREEN_EVENT = "faq-modul-e-szlaki-change-screen";
+  static ANIMATION_DURATION_TIME = 500; // wartość musi być taka sama jak w #FAQ-modul-e-szlaki .faq-current-questions-panel {}
+
   constructor(mainContainerSelector) {
-    this.ANIMATION_DURATION_TIME = 600; // wartość musi być taka sama jak w #FAQ-modul-e-szlaki .faq-current-questions-panel {}
     this.mainContainer = document.querySelector(mainContainerSelector);
     this.screenIcon = document.querySelector(
       FAQ_MODULE_ID_SELECTOR + " .faq-module-main-icon"
@@ -146,9 +149,13 @@ class FAQModuleContentScreens {
     this.screens = this.mainContainer.querySelectorAll(".screen-page");
     this.pageLinks = [];
     this.linkPage = "";
+    this.prevLink;
     this.breakpointValue = this.remToPx(76);
     this.windowWidthIsLessThanBreakpoint =
       window.innerWidth < this.breakpointValue;
+    this.changeScreenEvent = new CustomEvent(
+      FAQModuleContentScreens.FAQ_MODULE_CHANGE_SCREEN_EVENT
+    );
     this.init();
   }
 
@@ -173,7 +180,10 @@ class FAQModuleContentScreens {
 
   bindPageLinks() {
     // Mechanizm throttle do zabezpieczenia animacji
-    const throttle = (callback, delay = this.ANIMATION_DURATION_TIME) => {
+    const throttle = (
+      callback,
+      delay = FAQModuleContentScreens.ANIMATION_DURATION_TIME
+    ) => {
       let shouldWait = false;
 
       return (...args) => {
@@ -204,6 +214,11 @@ class FAQModuleContentScreens {
   }
 
   showPage(link) {
+    if (this.prevLink != link) {
+      this.prevLink = link;
+      window.dispatchEvent(this.changeScreenEvent);
+    }
+
     const activeMenu = this.mainContainer.querySelector(
       ".faq-category-link.active"
     );
@@ -250,7 +265,7 @@ class FAQModuleContentScreens {
 
     setTimeout(() => {
       nextPage.style.position = "relative";
-    }, this.ANIMATION_DURATION_TIME + 1);
+    }, FAQModuleContentScreens.ANIMATION_DURATION_TIME + 1);
   }
 
   getScreenData(screen) {
@@ -276,8 +291,7 @@ class FAQModuleToast {
     this.closeToastBtn.addEventListener("click", this.close);
   }
 
-  close() { 
-
+  close() {
     this.toast.style.animation =
       "close 0.3s cubic-bezier(.87,-1,.57,.97) forwards";
     this.toastTimer.classList.remove("timer-animation");
@@ -292,7 +306,12 @@ class FAQModuleToast {
     if (this.toast.style.display != "none") return;
 
     let toastTitle;
-    this.toast.classList.remove(FAQModuleToast.TYPE_SUCCESS, FAQModuleToast.TYPE_WARNING, FAQModuleToast.TYPE_ERROR,FAQModuleToast.TYPE_INFO);
+    this.toast.classList.remove(
+      FAQModuleToast.TYPE_SUCCESS,
+      FAQModuleToast.TYPE_WARNING,
+      FAQModuleToast.TYPE_ERROR,
+      FAQModuleToast.TYPE_INFO
+    );
     this.toast.style.display = "flex";
 
     switch (type) {
@@ -326,6 +345,8 @@ class FAQModuleToast {
 }
 
 class FAQAccordionModule {
+  static ANIMATION_DURATION_TIME = 200;
+
   constructor(accordionsMenuSelector) {
     this.accordionsMenuSelector = accordionsMenuSelector;
 
@@ -378,14 +399,29 @@ class FAQAccordionModule {
     const accordionsMenu = document.querySelectorAll(
       this.accordionsMenuSelector
     );
+    const allAccordionInputs = document.querySelectorAll(
+      FAQ_MODULE_ID_SELECTOR + " .faq-accordion__item .faq-accordion__input"
+    );
 
-    if (accordionsMenu.length > 0 && window.requestAnimationFrame) {
-      for (let i = 0; i < accordionsMenu.length; i++) {
-        accordionsMenu[i].addEventListener("change", (event) => {
-          this.animateAccordion(event.target);
+    accordionsMenu.forEach((accordionInput) => {
+      accordionInput.addEventListener("change", (event) => {
+        this.animateAccordion(event.target);
+      });
+    });
+
+    // zamknij wszyskie accordiony gdy zmieni się kategoria pytań
+    window.addEventListener(
+      FAQModuleContentScreens.FAQ_MODULE_CHANGE_SCREEN_EVENT,
+      (event) => {
+        allAccordionInputs.forEach((accordionInput) => {
+          if (accordionInput != event.target && accordionInput.checked) {
+            setTimeout(() => {
+              accordionInput.checked = false;
+            }, FAQModuleContentScreens.ANIMATION_DURATION_TIME);
+          }
         });
       }
-    }
+    );
   }
 
   animateAccordion(input) {
@@ -398,10 +434,16 @@ class FAQAccordionModule {
     const initHeight = !bool ? dropdown.offsetHeight : 0,
       finalHeight = !bool ? 0 : dropdown.offsetHeight;
 
-    this.setHeight(initHeight, finalHeight, dropdown, 250, () => {
-      this.removeClass(dropdown, "faq-accordion__sub--is-visible");
-      dropdown.removeAttribute("style");
-    });
+    this.setHeight(
+      initHeight,
+      finalHeight,
+      dropdown,
+      FAQAccordionModule.ANIMATION_DURATION_TIME,
+      () => {
+        this.removeClass(dropdown, "faq-accordion__sub--is-visible");
+        dropdown.removeAttribute("style");
+      }
+    );
   }
 
   hasClass(el, className) {

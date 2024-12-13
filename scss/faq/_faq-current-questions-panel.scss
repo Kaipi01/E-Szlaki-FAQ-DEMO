@@ -8,7 +8,7 @@
     padding-block: 1.5rem;
     background-color: var(--background-opacity);
     --page-shift-value: -50%;
-    --animation-duration-time: 0.6s; /* wartość musi być taka sama jak w FAQModuleContentScreens.ANIMATION_DURATION_TIME */
+    --animation-duration-time: 0.5s; /* wartość musi być taka sama jak w FAQModuleContentScreens.ANIMATION_DURATION_TIME */
     --card-padding-inline: 1.25rem;
 
     @media (min-width: 55em) {

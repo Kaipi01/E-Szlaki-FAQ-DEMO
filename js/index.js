@@ -242,7 +242,7 @@ class FAQModuleContentScreens {
   }
 
   animateChangeIcon(iconSrc) {
-    if (this.screenIcon && iconSrc && this.currentScreenIconURL != iconSrc) {
+    if (this.screenIcon && iconSrc && this.currentScreenIconURL != iconSrc) { 
       this.screenIcon.style.transform = "scale(0)";
       this.currentScreenIconURL = iconSrc;
 
@@ -256,6 +256,7 @@ class FAQModuleContentScreens {
   animateChangePages(prevPage, nextPage) {
     if (prevPage === nextPage) return;
 
+    prevPage.classList.remove("screen-page-static");
     this.screens.forEach((screen) => (screen.style.position = "absolute"));
 
     if (prevPage) {

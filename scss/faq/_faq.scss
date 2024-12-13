@@ -9,7 +9,11 @@
 
 #FAQ-modul-e-szlaki {
   @extend %modern-card;
-  padding: 4rem 2rem;
+  padding: 2.75rem 1rem;
+
+  @media (min-width: 31.25em) {
+    padding: 4rem 2rem;
+  }
 
   .faq-main-content {
     display: grid;
@@ -17,7 +21,7 @@
     gap: 2rem;
 
     @media (min-width: $content-breakpoint) {
-      grid-template-columns: repeat(4, 1fr); 
+      grid-template-columns: repeat(4, 1fr);
     }
 
     .faq-main-header {
@@ -27,8 +31,15 @@
     }
 
     .faq-intro {
-      padding-block: 0.5rem;
-      font-size: 1.2rem;
+      padding-block: 0.25rem;
+      font-size: 1.1rem;
+      text-align: center;
+
+      @media (min-width: 31.25em) {
+        padding-block: 0.5rem;
+        font-size: 1.2rem;
+        text-align: left;
+      }
 
       &-image {
         display: block;
@@ -54,11 +65,15 @@
     .faq-current-questions-panel,
     .faq-search-results-content {
       width: 100%;
-      min-height: fun.toRem(660);
+      min-height: fun.toRem(400);
       overflow: hidden;
+
+      @media (min-width: 50em) {
+      }
 
       @media (min-width: $content-breakpoint) {
         grid-column: span 3;
+        min-height: fun.toRem(660);
       }
     }
 
@@ -69,14 +84,23 @@
     }
 
     .faq-contact-us-panel {
-      padding: 3rem 1.5rem;
+      padding: 2rem 1rem;
       border-radius: 25px;
       background-color: var(--light-green-30);
       text-align: center;
 
+      @media (min-width: 31.25em) {
+        padding: 3rem 2rem;
+      }
+
       .text {
+        padding-top: 1rem;
         color: var(--font-color);
-        font-size: 1.2rem;
+        font-size: 1rem;
+
+        @media (min-width: 50em) {
+          font-size: 1.2rem;
+        }
       }
 
       @media (min-width: $content-breakpoint) {

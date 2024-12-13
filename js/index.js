@@ -104,7 +104,7 @@ class FAQModuleSideBarMenu {
       );
       this.setEventListeners();
     } catch (e) {
-      console.error(e);
+      console.warn(e);
     }
   }
 
